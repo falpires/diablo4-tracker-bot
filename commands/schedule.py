@@ -55,14 +55,11 @@ class ScheduleCog(commands.Cog):
 
         if event in ("all", "worldboss"):
             boss, zones, spawn_ms, next_boss, next_zones, next_spawn_ms = get_boss_spawn(now_ms)
-            from utils.formatters import is_active
-            lines = []
             if is_active(spawn_ms, 15 * 60 * 1000):
-                lines.append(f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}")
+                val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}"
             else:
-                lines.append(f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {boss}")
-            lines.append(f"{dt(next_spawn_ms)} {dt_time(next_spawn_ms)} — {next_boss}")
-            embed.add_field(name="👹 World Boss", value="\n".join(lines), inline=False)
+                val = f"{dt(next_spawn_ms)} {dt_time(next_spawn_ms)} — {next_boss}"
+            embed.add_field(name="👹 World Boss", value=val, inline=False)
 
         if event in ("all", "legion"):
             ze = data.get("zoneEvent", {})
