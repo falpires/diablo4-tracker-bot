@@ -5,7 +5,7 @@ from discord.ext import commands
 
 from maps.generator import generate_boss_map
 from maps.zones import get_boss_spawn
-from utils.formatters import worldboss_embed
+from utils.formatters import worldboss_embed, is_active
 
 
 class WorldBossCog(commands.Cog):
@@ -20,7 +20,8 @@ class WorldBossCog(commands.Cog):
 
         embed = worldboss_embed(boss, spawn_ms, zones, next_boss, next_spawn_ms, next_zones)
 
-        map_buf = generate_boss_map(zones[0] if zones else None)
+        map_zone = zones[0] if is_active(spawn_ms, 15 * 60 * 1000) else (next_zones[0] if next_zones else None)
+        map_buf = generate_boss_map(map_zone)
         if map_buf:
             file = discord.File(map_buf, filename="boss_map.png")
             embed.set_image(url="attachment://boss_map.png")
