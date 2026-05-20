@@ -39,6 +39,35 @@ def get_helltide_zone(spawn_time_ms: int) -> str:
     return HELLTIDE_ROTATION[idx]
 
 
+# World boss deterministic rotation (verified from helltides.com, 2026-05-20)
+# 12-slot cycle, 12600s (3.5h) per slot. Boss + zone(s) per slot.
+BOSS_INTERVAL_MS = 12600 * 1000
+BOSS_ANCHOR_MS = 1779307200 * 1000  # slot 0: Ashava, Dry Steppes
+
+BOSS_ROTATION: list[tuple[str, list[str]]] = [
+    ("Ashava the Pestilent",              ["Dry Steppes"]),
+    ("Ashava the Pestilent",              ["Fractured Peaks"]),
+    ("Ashava the Pestilent",              ["Kehjistan", "Nahantu"]),
+    ("Wandering Death, Death Given Life", ["Scosglen"]),
+    ("Wandering Death, Death Given Life", ["Kehjistan"]),
+    ("Avarice, the Gold Cursed",          ["Scosglen"]),
+    ("Avarice, the Gold Cursed",          ["Kehjistan", "Nahantu"]),
+    ("Avarice, the Gold Cursed",          ["Scosglen"]),
+    ("Ashava the Pestilent",              ["Kehjistan"]),
+    ("Ashava the Pestilent",              ["Scosglen"]),
+    ("Wandering Death, Death Given Life", ["Dry Steppes", "Nahantu"]),
+    ("Wandering Death, Death Given Life", ["Fractured Peaks"]),
+]
+
+
+def get_boss_spawn(now_ms: int) -> tuple[str, list[str], int, str, list[str], int]:
+    """Return (boss, zones, spawn_ms, next_boss, next_zones, next_spawn_ms)."""
+    slot = int((now_ms - BOSS_ANCHOR_MS) // BOSS_INTERVAL_MS)
+    spawn_ms = BOSS_ANCHOR_MS + slot * BOSS_INTERVAL_MS
+    next_spawn_ms = spawn_ms + BOSS_INTERVAL_MS
+    boss, zones = BOSS_ROTATION[slot % len(BOSS_ROTATION)]
+    next_boss, next_zones = BOSS_ROTATION[(slot + 1) % len(BOSS_ROTATION)]
+    return boss, zones, spawn_ms, next_boss, next_zones, next_spawn_ms
 
 
 # Loaded from the extracted helltides.com zone data

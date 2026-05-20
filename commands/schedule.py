@@ -4,7 +4,7 @@ from discord import app_commands
 from discord.ext import commands
 
 from api.diablo4life import fetch_events
-from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX
+from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX, get_boss_spawn, BOSS_INTERVAL_MS
 from utils.formatters import dt, dt_time, ts, is_active, HELLTIDE_DURATION_MS
 
 LEGION_INTERVAL_MS = 25 * 60 * 1000
@@ -54,14 +54,15 @@ class ScheduleCog(commands.Cog):
             embed.add_field(name="🔥 Helltide", value="\n".join(lines) or "No data", inline=False)
 
         if event in ("all", "worldboss"):
-            boss = data.get("worldBoss", {})
-            next_boss = data.get("nextWorldBoss", {})
+            boss, zones, spawn_ms, next_boss, next_zones, next_spawn_ms = get_boss_spawn(now_ms)
+            from utils.formatters import is_active
             lines = []
-            if boss.get("time"):
-                lines.append(f"{dt(boss['time'])} {dt_time(boss['time'])} — {boss.get('name', '?')}")
-            if next_boss.get("time") and next_boss.get("time") != boss.get("time"):
-                lines.append(f"{dt(next_boss['time'])} {dt_time(next_boss['time'])} — {next_boss.get('name', '?')}")
-            embed.add_field(name="👹 World Boss", value="\n".join(lines) or "No data", inline=False)
+            if is_active(spawn_ms, 15 * 60 * 1000):
+                lines.append(f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}")
+            else:
+                lines.append(f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {boss}")
+            lines.append(f"{dt(next_spawn_ms)} {dt_time(next_spawn_ms)} — {next_boss}")
+            embed.add_field(name="👹 World Boss", value="\n".join(lines), inline=False)
 
         if event in ("all", "legion"):
             ze = data.get("zoneEvent", {})

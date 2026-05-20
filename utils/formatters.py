@@ -69,33 +69,33 @@ def helltide_embed(data: dict, zone: str | None) -> discord.Embed:
     return embed
 
 
-def worldboss_embed(data: dict) -> discord.Embed:
-    boss = data.get("worldBoss", {})
-    next_boss = data.get("nextWorldBoss", {})
-    ts_ms = boss.get("time", 0)
-    name = boss.get("name", "Unknown")
-    active = is_active(ts_ms, 15 * 60 * 1000)
+def worldboss_embed(
+    name: str, spawn_ms: int, zones: list[str],
+    next_name: str, next_spawn_ms: int, next_zones: list[str],
+) -> discord.Embed:
+    active = is_active(spawn_ms, 15 * 60 * 1000)
+    zone_str = " / ".join(zones) if zones else ""
 
     if active:
-        end_ms = ts_ms + 15 * 60 * 1000
+        end_ms = spawn_ms + 15 * 60 * 1000
         desc = f"**{name}** is **alive** — despawns {dt(end_ms)} ({dt_time(end_ms)})"
         color = discord.Color.from_rgb(160, 0, 160)
     else:
-        desc = f"**{name}** spawns {dt(ts_ms)} ({dt_time(ts_ms)})"
+        desc = f"**{name}** spawns {dt(spawn_ms)} ({dt_time(spawn_ms)})"
         color = discord.Color.from_rgb(80, 80, 80)
+
+    if zone_str:
+        desc += f"\n{zone_str}"
 
     embed = discord.Embed(title="👹 World Boss", description=desc, color=color)
 
-    next_name = next_boss.get("name", "")
-    next_ts_ms = next_boss.get("time", 0)
-    if next_name and next_ts_ms and next_ts_ms != ts_ms:
-        embed.add_field(
-            name="Next",
-            value=f"{next_name} — {dt(next_ts_ms)} ({dt_time(next_ts_ms)})",
-            inline=False,
-        )
+    next_zone_str = " / ".join(next_zones) if next_zones else ""
+    next_val = f"{next_name} — {dt(next_spawn_ms)} ({dt_time(next_spawn_ms)})"
+    if next_zone_str:
+        next_val += f"\n{next_zone_str}"
+    embed.add_field(name="Next", value=next_val, inline=False)
 
-    embed.set_footer(text="diablo4.life")
+    embed.set_footer(text="helltides.com rotation")
     return embed
 
 
