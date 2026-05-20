@@ -1,0 +1,4419 @@
+[
+  {
+    "id": "fractured_peaks",
+    "name": "Fractured Peaks",
+    "url": "/images/map/fractured_peaks.png",
+    "height": 1038,
+    "width": 1687,
+    "chests": [
+      {
+        "id": "fractured_peaks_1_olyam_tundra",
+        "name": "Olyam Tundra",
+        "type": "mystery",
+        "coords": {
+          "lat": 458,
+          "lng": 897.504143
+        }
+      },
+      {
+        "id": "fractured_peaks_2_western_ways",
+        "name": "Western Ways",
+        "type": "mystery",
+        "coords": {
+          "lat": 764.5,
+          "lng": 450.729276
+        }
+      },
+      {
+        "id": "fractured_peaks_3_kor_rohavan",
+        "name": "Kor Rohavan",
+        "type": "mystery",
+        "coords": {
+          "lat": 253,
+          "lng": 1009
+        }
+      },
+      {
+        "id": "fractured_peaks_4_western_ways",
+        "name": "Western Ways",
+        "type": "mystery",
+        "coords": {
+          "lat": 715.5,
+          "lng": 383.491559
+        }
+      },
+      {
+        "id": "fractured_peaks_1_western_ways_living_steel",
+        "name": "Western Ways Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 678,
+          "lng": 393
+        }
+      },
+      {
+        "id": "fractured_peaks_2_crags_ill_wind_living_steel",
+        "name": "Crags of Ill Wind Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 722,
+          "lng": 751
+        }
+      },
+      {
+        "id": "fractured_peaks_3_crags_ill_wind_living_steel",
+        "name": "Crags of Ill Wind Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 709,
+          "lng": 813
+        }
+      },
+      {
+        "id": "fractured_peaks_4_deep_white_living_steel",
+        "name": "Deep White Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 636,
+          "lng": 893
+        }
+      },
+      {
+        "id": "fractured_peaks_5_deep_white_living_steel",
+        "name": "Deep White Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 573,
+          "lng": 1034
+        }
+      },
+      {
+        "id": "fractured_peaks_6_wester_ways_living_steel",
+        "name": "Western Ways Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 498,
+          "lng": 491
+        }
+      },
+      {
+        "id": "fractured_peaks_7_kor_benetar_living_steel",
+        "name": "Kor Benetar Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 420,
+          "lng": 528
+        }
+      },
+      {
+        "id": "fractured_peaks_8_wester_ways_living_steel",
+        "name": "Western Ways Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 448,
+          "lng": 665
+        }
+      },
+      {
+        "id": "fractured_peaks_9_eastern_plain_living_steel",
+        "name": "Easter Plain Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 297,
+          "lng": 896
+        }
+      },
+      {
+        "id": "fractured_peaks_10_shivering_wilds_living_steel",
+        "name": "Shivering Wilds Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 284,
+          "lng": 1132
+        }
+      },
+      {
+        "id": "fractured_peaks_11_shivering_wilds_living_steel",
+        "name": "Shivering Wilds Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 303,
+          "lng": 1305
+        }
+      },
+      {
+        "id": "fractured_peaks_12_shivering_wilds_living_steel",
+        "name": "Shivering Wilds Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 220,
+          "lng": 1340
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "fractured_peaks_event_1",
+        "coords": {
+          "lat": 708,
+          "lng": 468
+        }
+      },
+      {
+        "id": "fractured_peaks_event_2",
+        "coords": {
+          "lat": 674,
+          "lng": 752
+        }
+      },
+      {
+        "id": "fractured_peaks_event_3",
+        "coords": {
+          "lat": 393,
+          "lng": 539
+        }
+      },
+      {
+        "id": "fractured_peaks_event_4",
+        "coords": {
+          "lat": 470,
+          "lng": 723
+        }
+      },
+      {
+        "id": "fractured_peaks_event_5",
+        "coords": {
+          "lat": 700,
+          "lng": 1059
+        }
+      },
+      {
+        "id": "fractured_peaks_event_6",
+        "coords": {
+          "lat": 459,
+          "lng": 1082
+        }
+      },
+      {
+        "id": "fractured_peaks_event_7",
+        "coords": {
+          "lat": 227,
+          "lng": 1008
+        }
+      },
+      {
+        "id": "fractured_peaks_event_8",
+        "coords": {
+          "lat": 184,
+          "lng": 1388
+        }
+      }
+    ],
+    "bossPaths": [
+      [
+        [
+          310,
+          980
+        ],
+        [
+          311,
+          984
+        ],
+        [
+          316,
+          995
+        ],
+        [
+          321,
+          1004
+        ],
+        [
+          327,
+          1012
+        ],
+        [
+          332,
+          1019
+        ],
+        [
+          338,
+          1025
+        ],
+        [
+          344,
+          1031
+        ],
+        [
+          349,
+          1031
+        ],
+        [
+          352,
+          1029
+        ],
+        [
+          354,
+          1026
+        ],
+        [
+          354,
+          1022
+        ],
+        [
+          353,
+          1016
+        ],
+        [
+          351,
+          1012
+        ],
+        [
+          348,
+          1007
+        ],
+        [
+          344,
+          1006
+        ],
+        [
+          341,
+          1007
+        ],
+        [
+          339,
+          1010
+        ],
+        [
+          336,
+          1016
+        ],
+        [
+          330,
+          1024
+        ],
+        [
+          324,
+          1032
+        ],
+        [
+          323,
+          1040
+        ],
+        [
+          325,
+          1047
+        ],
+        [
+          331,
+          1051
+        ],
+        [
+          337,
+          1056
+        ],
+        [
+          342,
+          1062
+        ],
+        [
+          342,
+          1069
+        ],
+        [
+          341,
+          1078
+        ]
+      ],
+      [
+        [
+          598,
+          942
+        ],
+        [
+          594,
+          942
+        ],
+        [
+          587,
+          943
+        ],
+        [
+          580,
+          945
+        ],
+        [
+          575,
+          950
+        ],
+        [
+          572,
+          954
+        ],
+        [
+          569,
+          959
+        ],
+        [
+          566,
+          969
+        ],
+        [
+          568,
+          975
+        ],
+        [
+          574,
+          981
+        ],
+        [
+          579,
+          988
+        ],
+        [
+          585,
+          992
+        ],
+        [
+          603,
+          993
+        ],
+        [
+          615,
+          1001
+        ],
+        [
+          630,
+          1000
+        ],
+        [
+          635,
+          995
+        ],
+        [
+          635,
+          986
+        ],
+        [
+          633,
+          980
+        ],
+        [
+          629,
+          975
+        ],
+        [
+          622,
+          968
+        ],
+        [
+          619,
+          961
+        ],
+        [
+          615,
+          955
+        ],
+        [
+          610,
+          949
+        ],
+        [
+          606,
+          944
+        ],
+        [
+          598,
+          942
+        ]
+      ]
+    ],
+    "accursedRituals": [
+      {
+        "id": "fractured_peaks_accursed_ritual_1",
+        "coords": {
+          "lat": 591,
+          "lng": 696
+        }
+      },
+      {
+        "id": "fractured_peaks_accursed_ritual_2",
+        "coords": {
+          "lat": 548,
+          "lng": 997
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "fractured_peaks_hellworm_1",
+        "coords": {
+          "lat": 314,
+          "lng": 1102
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_2",
+        "coords": {
+          "lat": 425,
+          "lng": 1131
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_3",
+        "coords": {
+          "lat": 392,
+          "lng": 1077
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_4",
+        "coords": {
+          "lat": 401,
+          "lng": 876
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_5",
+        "coords": {
+          "lat": 450,
+          "lng": 877
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_6",
+        "coords": {
+          "lat": 468,
+          "lng": 884
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_7",
+        "coords": {
+          "lat": 470,
+          "lng": 935
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_8",
+        "coords": {
+          "lat": 515,
+          "lng": 953
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_9",
+        "coords": {
+          "lat": 233,
+          "lng": 1329
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_10",
+        "coords": {
+          "lat": 190,
+          "lng": 1259
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_11",
+        "coords": {
+          "lat": 181,
+          "lng": 1196
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_12",
+        "coords": {
+          "lat": 190,
+          "lng": 1151
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_13",
+        "coords": {
+          "lat": 208,
+          "lng": 1003
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_14",
+        "coords": {
+          "lat": 327,
+          "lng": 886
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_15",
+        "coords": {
+          "lat": 488,
+          "lng": 665
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_16",
+        "coords": {
+          "lat": 433,
+          "lng": 530
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_17",
+        "coords": {
+          "lat": 553,
+          "lng": 567
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_18",
+        "coords": {
+          "lat": 497,
+          "lng": 715
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_19",
+        "coords": {
+          "lat": 623,
+          "lng": 973
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_20",
+        "coords": {
+          "lat": 695,
+          "lng": 955
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_21",
+        "coords": {
+          "lat": 738,
+          "lng": 788
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_22",
+        "coords": {
+          "lat": 629,
+          "lng": 765
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_23",
+        "coords": {
+          "lat": 623,
+          "lng": 733
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_24",
+        "coords": {
+          "lat": 713,
+          "lng": 530
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_25",
+        "coords": {
+          "lat": 751,
+          "lng": 421
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_26",
+        "coords": {
+          "lat": 798,
+          "lng": 339
+        }
+      },
+      {
+        "id": "fractured_peaks_hellworm_27",
+        "coords": {
+          "lat": 830,
+          "lng": 388
+        }
+      }
+    ]
+  },
+  {
+    "id": "hawezar",
+    "name": "Hawezar",
+    "url": "/images/map/hawezar.png",
+    "height": 793,
+    "width": 1354,
+    "chests": [
+      {
+        "id": "hawezar_1_pilgrams_cave",
+        "name": "Pilgram's Cave",
+        "type": "mystery",
+        "coords": {
+          "lat": 610,
+          "lng": 455.49
+        }
+      },
+      {
+        "id": "hawezar_2_plains_of_attrition",
+        "name": "Plains of Attrition",
+        "type": "mystery",
+        "coords": {
+          "lat": 67,
+          "lng": 451.49
+        }
+      },
+      {
+        "id": "hawezar_3_devouring_moon",
+        "name": "The Devouring Moon",
+        "type": "mystery",
+        "coords": {
+          "lat": 285.374,
+          "lng": 603.631
+        }
+      },
+      {
+        "id": "hawezar_4_intruders_claim",
+        "name": "Intruder's Claim",
+        "type": "mystery",
+        "coords": {
+          "lat": 744.854,
+          "lng": 741.121
+        }
+      },
+      {
+        "id": "hawezar_1_dismal_foothills_living_steel",
+        "name": "Dismal Foothills Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 698,
+          "lng": 624
+        }
+      },
+      {
+        "id": "hawezar_2_cinder_wastes_living_steel",
+        "name": "Cinder Wastes Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 689,
+          "lng": 767
+        }
+      },
+      {
+        "id": "hawezar_3_cinder_wastes_living_steel",
+        "name": "Cinder Wastes Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 653,
+          "lng": 829
+        }
+      },
+      {
+        "id": "hawezar_4_crimson_spoil_living_steel",
+        "name": "Crimson Spoil Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 585,
+          "lng": 807
+        }
+      },
+      {
+        "id": "hawezar_5_crimson_spoil_living_steel",
+        "name": "Crimson Spoil Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 498,
+          "lng": 754
+        }
+      },
+      {
+        "id": "hawezar_6_path_desperation_living_steel",
+        "name": "Path of Desperation Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 484,
+          "lng": 553
+        }
+      },
+      {
+        "id": "hawezar_7_devouring_moor_living_steel",
+        "name": "Devouring Moor Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 382,
+          "lng": 585
+        }
+      },
+      {
+        "id": "hawezar_8_lights_wane_living_steel",
+        "name": "Light's Wane Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 316,
+          "lng": 576
+        }
+      },
+      {
+        "id": "hawezar_9_devouring_moor_living_steel",
+        "name": "Devouring Moor Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 270,
+          "lng": 705
+        }
+      },
+      {
+        "id": "hawezar_10_diseased_embankment_living_steel",
+        "name": "Diseased Embankment Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 211,
+          "lng": 508
+        }
+      },
+      {
+        "id": "hawezar_11_plains_of_attrition_living_steel",
+        "name": "Plains of Attrition Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 90,
+          "lng": 538
+        }
+      },
+      {
+        "id": "hawezar_12_plains_attrition_living_steel",
+        "name": "Plains of Attrition Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 80,
+          "lng": 459
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "hawezar_event_1",
+        "coords": {
+          "lat": 663,
+          "lng": 695
+        }
+      },
+      {
+        "id": "hawezar_event_2",
+        "coords": {
+          "lat": 557,
+          "lng": 526
+        }
+      },
+      {
+        "id": "hawezar_event_3",
+        "coords": {
+          "lat": 525,
+          "lng": 705
+        }
+      },
+      {
+        "id": "hawezar_event_4",
+        "coords": {
+          "lat": 345,
+          "lng": 625
+        }
+      },
+      {
+        "id": "hawezar_event_5",
+        "coords": {
+          "lat": 274,
+          "lng": 556
+        }
+      },
+      {
+        "id": "hawezar_event_6",
+        "coords": {
+          "lat": 235,
+          "lng": 645
+        }
+      },
+      {
+        "id": "hawezar_event_7",
+        "coords": {
+          "lat": 150,
+          "lng": 512
+        }
+      }
+    ],
+    "bossPaths": [
+      [
+        [
+          60,
+          457
+        ],
+        [
+          63,
+          466
+        ],
+        [
+          66,
+          475
+        ],
+        [
+          82,
+          476
+        ],
+        [
+          84,
+          482
+        ],
+        [
+          84,
+          488
+        ],
+        [
+          75,
+          497
+        ],
+        [
+          71,
+          499
+        ],
+        [
+          66,
+          499
+        ],
+        [
+          63,
+          502
+        ],
+        [
+          64,
+          505
+        ],
+        [
+          69,
+          504
+        ],
+        [
+          75,
+          501
+        ],
+        [
+          81,
+          505
+        ],
+        [
+          81,
+          513
+        ],
+        [
+          74,
+          518
+        ]
+      ],
+      [
+        [
+          268,
+          618
+        ],
+        [
+          273,
+          624
+        ],
+        [
+          283,
+          631
+        ],
+        [
+          288,
+          638
+        ],
+        [
+          290,
+          645
+        ],
+        [
+          289,
+          654
+        ],
+        [
+          299,
+          663
+        ],
+        [
+          304,
+          669
+        ],
+        [
+          306,
+          677
+        ]
+      ],
+      [
+        [
+          646,
+          477
+        ],
+        [
+          649,
+          481
+        ],
+        [
+          649,
+          485
+        ],
+        [
+          646,
+          488
+        ],
+        [
+          646,
+          490
+        ],
+        [
+          667,
+          499
+        ],
+        [
+          685,
+          519
+        ],
+        [
+          685,
+          542
+        ]
+      ],
+      [
+        [
+          604,
+          750
+        ],
+        [
+          594,
+          772
+        ],
+        [
+          588,
+          766
+        ],
+        [
+          582,
+          762
+        ],
+        [
+          580,
+          766
+        ],
+        [
+          579,
+          774
+        ],
+        [
+          575,
+          779
+        ],
+        [
+          571,
+          780
+        ],
+        [
+          551,
+          767
+        ]
+      ]
+    ],
+    "accursedRituals": [
+      {
+        "id": "hawezar_accursed_ritual_1",
+        "coords": {
+          "lat": 319,
+          "lng": 698
+        }
+      },
+      {
+        "id": "hawezar_accursed_ritual_2",
+        "coords": {
+          "lat": 674,
+          "lng": 749
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "hawezar_hellworm_1",
+        "coords": {
+          "lat": 680,
+          "lng": 641
+        }
+      },
+      {
+        "id": "hawezar_hellworm_2",
+        "coords": {
+          "lat": 713,
+          "lng": 717
+        }
+      },
+      {
+        "id": "hawezar_hellworm_3",
+        "coords": {
+          "lat": 671,
+          "lng": 798
+        }
+      },
+      {
+        "id": "hawezar_hellworm_4",
+        "coords": {
+          "lat": 632,
+          "lng": 756
+        }
+      },
+      {
+        "id": "hawezar_hellworm_5",
+        "coords": {
+          "lat": 462,
+          "lng": 582
+        }
+      },
+      {
+        "id": "hawezar_hellworm_6",
+        "coords": {
+          "lat": 484,
+          "lng": 606
+        }
+      },
+      {
+        "id": "hawezar_hellworm_7",
+        "coords": {
+          "lat": 475,
+          "lng": 662
+        }
+      },
+      {
+        "id": "hawezar_hellworm_8",
+        "coords": {
+          "lat": 629,
+          "lng": 671
+        }
+      },
+      {
+        "id": "hawezar_hellworm_9",
+        "coords": {
+          "lat": 647,
+          "lng": 647
+        }
+      },
+      {
+        "id": "hawezar_hellworm_10",
+        "coords": {
+          "lat": 681,
+          "lng": 682
+        }
+      },
+      {
+        "id": "hawezar_hellworm_11",
+        "coords": {
+          "lat": 632,
+          "lng": 723
+        }
+      },
+      {
+        "id": "hawezar_hellworm_12",
+        "coords": {
+          "lat": 548,
+          "lng": 606
+        }
+      },
+      {
+        "id": "hawezar_hellworm_13",
+        "coords": {
+          "lat": 563,
+          "lng": 563
+        }
+      },
+      {
+        "id": "hawezar_hellworm_14",
+        "coords": {
+          "lat": 596,
+          "lng": 476
+        }
+      },
+      {
+        "id": "hawezar_hellworm_15",
+        "coords": {
+          "lat": 605,
+          "lng": 529
+        }
+      },
+      {
+        "id": "hawezar_hellworm_16",
+        "coords": {
+          "lat": 655,
+          "lng": 554
+        }
+      },
+      {
+        "id": "hawezar_hellworm_17",
+        "coords": {
+          "lat": 619,
+          "lng": 558
+        }
+      },
+      {
+        "id": "hawezar_hellworm_18",
+        "coords": {
+          "lat": 44,
+          "lng": 509
+        }
+      },
+      {
+        "id": "hawezar_hellworm_19",
+        "coords": {
+          "lat": 60,
+          "lng": 454
+        }
+      },
+      {
+        "id": "hawezar_hellworm_20",
+        "coords": {
+          "lat": 496,
+          "lng": 747
+        }
+      },
+      {
+        "id": "hawezar_hellworm_21",
+        "coords": {
+          "lat": 525,
+          "lng": 677
+        }
+      },
+      {
+        "id": "hawezar_hellworm_22",
+        "coords": {
+          "lat": 520,
+          "lng": 633
+        }
+      },
+      {
+        "id": "hawezar_hellworm_23",
+        "coords": {
+          "lat": 614,
+          "lng": 818
+        }
+      },
+      {
+        "id": "hawezar_hellworm_24",
+        "coords": {
+          "lat": 306,
+          "lng": 548
+        }
+      },
+      {
+        "id": "hawezar_hellworm_25",
+        "coords": {
+          "lat": 149,
+          "lng": 448
+        }
+      },
+      {
+        "id": "hawezar_hellworm_26",
+        "coords": {
+          "lat": 137,
+          "lng": 476
+        }
+      },
+      {
+        "id": "hawezar_hellworm_27",
+        "coords": {
+          "lat": 171,
+          "lng": 515
+        }
+      },
+      {
+        "id": "hawezar_hellworm_28",
+        "coords": {
+          "lat": 282,
+          "lng": 650
+        }
+      },
+      {
+        "id": "hawezar_hellworm_29",
+        "coords": {
+          "lat": 379,
+          "lng": 615
+        }
+      },
+      {
+        "id": "hawezar_hellworm_30",
+        "coords": {
+          "lat": 361,
+          "lng": 536
+        }
+      },
+      {
+        "id": "hawezar_hellworm_31",
+        "coords": {
+          "lat": 320,
+          "lng": 506
+        }
+      },
+      {
+        "id": "hawezar_hellworm_32",
+        "coords": {
+          "lat": 223,
+          "lng": 506
+        }
+      },
+      {
+        "id": "hawezar_hellworm_33",
+        "coords": {
+          "lat": 253,
+          "lng": 511
+        }
+      },
+      {
+        "id": "hawezar_hellworm_34",
+        "coords": {
+          "lat": 248,
+          "lng": 711
+        }
+      },
+      {
+        "id": "hawezar_hellworm_35",
+        "coords": {
+          "lat": 320,
+          "lng": 726
+        }
+      },
+      {
+        "id": "hawezar_hellworm_36",
+        "coords": {
+          "lat": 291,
+          "lng": 612
+        }
+      }
+    ]
+  },
+  {
+    "id": "scosglen",
+    "name": "Scosglen",
+    "url": "/images/map/scosglen.png",
+    "height": 878,
+    "width": 1544,
+    "chests": [
+      {
+        "id": "scosglen_1_fothrach_castle",
+        "name": "Fothrach Castle",
+        "type": "mystery",
+        "coords": {
+          "lat": 667.75,
+          "lng": 962.012499
+        }
+      },
+      {
+        "id": "scosglen_2_issalias_rise",
+        "name": "Issalia's Rise",
+        "type": "mystery",
+        "coords": {
+          "lat": 81,
+          "lng": 711.248505
+        }
+      },
+      {
+        "id": "scosglen_3_stormbreak_cove",
+        "name": "Stormbreak Cove",
+        "type": "mystery",
+        "coords": {
+          "lat": 611.5,
+          "lng": 1009.249562
+        }
+      },
+      {
+        "id": "scosglen_4_the_ancients_woods",
+        "name": "The Ancient's Woods",
+        "type": "mystery",
+        "coords": {
+          "lat": 222.25,
+          "lng": 647.995938
+        }
+      },
+      {
+        "id": "scosglen_5_the_dead_barks_wilderness",
+        "name": "The Dead Barks Wilderness",
+        "type": "mystery",
+        "coords": {
+          "lat": 334.5,
+          "lng": 694.997096
+        }
+      },
+      {
+        "id": "scosglen_6_vasilys_reach",
+        "name": "Vasily's Reach",
+        "type": "mystery",
+        "coords": {
+          "lat": 220.5,
+          "lng": 473.487632
+        }
+      },
+      {
+        "id": "scosglen_7_writhing_brook",
+        "name": "Writhing Brook",
+        "type": "mystery",
+        "coords": {
+          "lat": 454,
+          "lng": 767.498354
+        }
+      },
+      {
+        "id": "scosglen_8_abandoned_coast",
+        "name": "Abandoned Coast",
+        "type": "mystery",
+        "coords": {
+          "lat": 621.5,
+          "lng": 699.003388
+        }
+      },
+      {
+        "id": "scosglen_1_cursed_scarps_living_steel",
+        "name": "Cursed Scarps Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 681,
+          "lng": 877
+        }
+      },
+      {
+        "id": "scosglen_2_cursed_scarps_living_steel",
+        "name": "Cursed Scarps Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 624,
+          "lng": 791
+        }
+      },
+      {
+        "id": "scosglen_3_cursed_scarps_living_steel",
+        "name": "Cursed Scarps Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 627,
+          "lng": 960
+        }
+      },
+      {
+        "id": "scosglen_4_gaunt_eyrrs_living_steel",
+        "name": "Gaunt Eyrrs Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 563,
+          "lng": 822
+        }
+      },
+      {
+        "id": "scosglen_5_scourging_ings_living_steel",
+        "name": "Scourging Ings Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 482,
+          "lng": 774
+        }
+      },
+      {
+        "id": "scosglen_6_scourging_ings_living_steel",
+        "name": "Scourging Ings Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 462,
+          "lng": 814
+        }
+      },
+      {
+        "id": "scosglen_7_ancient_woods_living_steel",
+        "name": "Ancient Woods Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 260,
+          "lng": 692
+        }
+      },
+      {
+        "id": "scosglen_8_ancient_woods_living_steel",
+        "name": "Ancient Woods Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 213,
+          "lng": 680
+        }
+      },
+      {
+        "id": "scosglen_9_dark_thicket_living_steel",
+        "name": "Dark Thicket Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 205,
+          "lng": 563
+        }
+      },
+      {
+        "id": "scosglen_10_issalias_rise__living_steel",
+        "name": "Issalia's Rise Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 82,
+          "lng": 662
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "scosglen_events_1",
+        "coords": {
+          "lat": 706.75,
+          "lng": 922.05
+        }
+      },
+      {
+        "id": "scosglen_events_2",
+        "coords": {
+          "lat": 656,
+          "lng": 783
+        }
+      },
+      {
+        "id": "scosglen_events_3",
+        "coords": {
+          "lat": 618,
+          "lng": 873
+        }
+      },
+      {
+        "id": "scosglen_events_4",
+        "coords": {
+          "lat": 543,
+          "lng": 912
+        }
+      },
+      {
+        "id": "scosglen_events_5",
+        "coords": {
+          "lat": 497,
+          "lng": 807
+        }
+      },
+      {
+        "id": "scosglen_events_6",
+        "coords": {
+          "lat": 371,
+          "lng": 699
+        }
+      },
+      {
+        "id": "scosglen_events_7",
+        "coords": {
+          "lat": 203,
+          "lng": 520
+        }
+      },
+      {
+        "id": "scosglen_events_8",
+        "coords": {
+          "lat": 105,
+          "lng": 710
+        }
+      }
+    ],
+    "bossPaths": [
+      [
+        [
+          270,
+          715
+        ],
+        [
+          301,
+          738
+        ],
+        [
+          292,
+          751
+        ],
+        [
+          290,
+          756
+        ],
+        [
+          289,
+          767
+        ],
+        [
+          294,
+          772
+        ]
+      ],
+      [
+        [
+          174,
+          621
+        ],
+        [
+          166,
+          630
+        ],
+        [
+          162,
+          634
+        ],
+        [
+          158,
+          642
+        ],
+        [
+          160,
+          649
+        ],
+        [
+          159,
+          654
+        ],
+        [
+          154,
+          656
+        ],
+        [
+          172,
+          664
+        ],
+        [
+          196,
+          665
+        ],
+        [
+          201,
+          670
+        ]
+      ],
+      [
+        [
+          357,
+          819
+        ],
+        [
+          366,
+          818
+        ],
+        [
+          375,
+          809
+        ],
+        [
+          380,
+          809
+        ],
+        [
+          387,
+          815
+        ],
+        [
+          389,
+          821
+        ],
+        [
+          388,
+          827
+        ],
+        [
+          384,
+          831
+        ],
+        [
+          372,
+          830
+        ],
+        [
+          366,
+          818
+        ]
+      ],
+      [
+        [
+          442,
+          741
+        ],
+        [
+          444,
+          732
+        ],
+        [
+          453,
+          727
+        ],
+        [
+          462,
+          721
+        ],
+        [
+          468,
+          725
+        ],
+        [
+          476,
+          731
+        ],
+        [
+          484,
+          735
+        ],
+        [
+          486,
+          738
+        ],
+        [
+          485,
+          742
+        ],
+        [
+          483,
+          743
+        ],
+        [
+          478,
+          743
+        ],
+        [
+          473,
+          745
+        ],
+        [
+          470,
+          749
+        ],
+        [
+          466,
+          753
+        ],
+        [
+          462,
+          755
+        ],
+        [
+          454,
+          755
+        ],
+        [
+          447,
+          749
+        ],
+        [
+          442,
+          741
+        ]
+      ],
+      [
+        [
+          604,
+          998
+        ],
+        [
+          605,
+          989
+        ],
+        [
+          604,
+          976
+        ],
+        [
+          604,
+          963
+        ],
+        [
+          606,
+          955
+        ],
+        [
+          608,
+          952
+        ],
+        [
+          612,
+          951
+        ],
+        [
+          617,
+          952
+        ],
+        [
+          620,
+          956
+        ],
+        [
+          620,
+          960
+        ],
+        [
+          617,
+          963
+        ],
+        [
+          615,
+          966
+        ],
+        [
+          612,
+          970
+        ],
+        [
+          611,
+          973
+        ],
+        [
+          609,
+          979
+        ],
+        [
+          610,
+          987
+        ],
+        [
+          612,
+          993
+        ],
+        [
+          616,
+          998
+        ],
+        [
+          623,
+          1002
+        ],
+        [
+          629,
+          1002
+        ],
+        [
+          634,
+          1000
+        ],
+        [
+          649,
+          994
+        ]
+      ]
+    ],
+    "accursedRituals": [
+      {
+        "id": "scosglen_accursed_ritual_1",
+        "coords": {
+          "lat": 649,
+          "lng": 879
+        }
+      },
+      {
+        "id": "scosglen_accursed_ritual_2",
+        "coords": {
+          "lat": 194,
+          "lng": 588
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "scosglen_hellworm_1",
+        "coords": {
+          "lat": 134,
+          "lng": 614
+        }
+      },
+      {
+        "id": "scosglen_hellworm_2",
+        "coords": {
+          "lat": 209,
+          "lng": 632
+        }
+      },
+      {
+        "id": "scosglen_hellworm_3",
+        "coords": {
+          "lat": 116,
+          "lng": 699
+        }
+      },
+      {
+        "id": "scosglen_hellworm_4",
+        "coords": {
+          "lat": 86,
+          "lng": 708
+        }
+      },
+      {
+        "id": "scosglen_hellworm_5",
+        "coords": {
+          "lat": 297,
+          "lng": 735
+        }
+      },
+      {
+        "id": "scosglen_hellworm_6",
+        "coords": {
+          "lat": 316,
+          "lng": 684
+        }
+      },
+      {
+        "id": "scosglen_hellworm_7",
+        "coords": {
+          "lat": 409,
+          "lng": 681
+        }
+      },
+      {
+        "id": "scosglen_hellworm_8",
+        "coords": {
+          "lat": 369,
+          "lng": 745
+        }
+      },
+      {
+        "id": "scosglen_hellworm_9",
+        "coords": {
+          "lat": 358,
+          "lng": 768
+        }
+      },
+      {
+        "id": "scosglen_hellworm_10",
+        "coords": {
+          "lat": 178,
+          "lng": 650
+        }
+      },
+      {
+        "id": "scosglen_hellworm_11",
+        "coords": {
+          "lat": 231,
+          "lng": 623
+        }
+      },
+      {
+        "id": "scosglen_hellworm_12",
+        "coords": {
+          "lat": 235,
+          "lng": 641
+        }
+      },
+      {
+        "id": "scosglen_hellworm_13",
+        "coords": {
+          "lat": 218,
+          "lng": 699
+        }
+      },
+      {
+        "id": "scosglen_hellworm_14",
+        "coords": {
+          "lat": 219,
+          "lng": 539
+        }
+      },
+      {
+        "id": "scosglen_hellworm_15",
+        "coords": {
+          "lat": 210,
+          "lng": 521
+        }
+      },
+      {
+        "id": "scosglen_hellworm_16",
+        "coords": {
+          "lat": 179,
+          "lng": 512
+        }
+      },
+      {
+        "id": "scosglen_hellworm_17",
+        "coords": {
+          "lat": 625,
+          "lng": 899
+        }
+      },
+      {
+        "id": "scosglen_hellworm_18",
+        "coords": {
+          "lat": 610,
+          "lng": 997
+        }
+      },
+      {
+        "id": "scosglen_hellworm_19",
+        "coords": {
+          "lat": 662,
+          "lng": 992
+        }
+      },
+      {
+        "id": "scosglen_hellworm_20",
+        "coords": {
+          "lat": 687,
+          "lng": 911
+        }
+      },
+      {
+        "id": "scosglen_hellworm_21",
+        "coords": {
+          "lat": 705,
+          "lng": 884
+        }
+      },
+      {
+        "id": "scosglen_hellworm_22",
+        "coords": {
+          "lat": 592,
+          "lng": 787
+        }
+      },
+      {
+        "id": "scosglen_hellworm_23",
+        "coords": {
+          "lat": 456,
+          "lng": 857
+        }
+      },
+      {
+        "id": "scosglen_hellworm_24",
+        "coords": {
+          "lat": 448,
+          "lng": 823
+        }
+      },
+      {
+        "id": "scosglen_hellworm_25",
+        "coords": {
+          "lat": 485,
+          "lng": 761
+        }
+      },
+      {
+        "id": "scosglen_hellworm_26",
+        "coords": {
+          "lat": 409,
+          "lng": 777
+        }
+      },
+      {
+        "id": "scosglen_hellworm_27",
+        "coords": {
+          "lat": 693,
+          "lng": 959
+        }
+      },
+      {
+        "id": "scosglen_hellworm_28",
+        "coords": {
+          "lat": 373,
+          "lng": 805
+        }
+      },
+      {
+        "id": "scosglen_hellworm_29",
+        "coords": {
+          "lat": 566,
+          "lng": 769
+        }
+      }
+    ]
+  },
+  {
+    "id": "dry_steppes",
+    "name": "Dry Steppes",
+    "url": "/images/map/dry_steppes.png",
+    "height": 850,
+    "width": 1455,
+    "chests": [
+      {
+        "id": "dry_steppes_1_galtmaa_bushland",
+        "name": "Galtmaa Bushland",
+        "type": "mystery",
+        "coords": {
+          "lat": 199.75,
+          "lng": 417.989394
+        }
+      },
+      {
+        "id": "dry_steppes_2_wayfarers_folly",
+        "name": "Wayfarer's Folly",
+        "type": "mystery",
+        "coords": {
+          "lat": 477.25,
+          "lng": 832.493522
+        }
+      },
+      {
+        "id": "dry_steppes_3_desolations_reach",
+        "name": "Desolation's Reach",
+        "type": "mystery",
+        "coords": {
+          "lat": 118.75,
+          "lng": 751.757013
+        }
+      },
+      {
+        "id": "dry_steppes_4_crucible_of_cinder",
+        "name": "Crucible of Cinder",
+        "type": "mystery",
+        "coords": {
+          "lat": 645.75,
+          "lng": 819.004949
+        }
+      },
+      {
+        "id": "dry_steppes_1_hapless_frontier_living_steel",
+        "name": "Hapless Frontier Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 746,
+          "lng": 871
+        }
+      },
+      {
+        "id": "dry_steppes_2_crown_fiends_living_steel",
+        "name": "The Crown of Fiends Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 676,
+          "lng": 791
+        }
+      },
+      {
+        "id": "dry_steppes_3_hapless_frontier_living_steel",
+        "name": "Hapless Frontier Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 632,
+          "lng": 884
+        }
+      },
+      {
+        "id": "dry_steppes_4_wayfarer_folly_living_steel",
+        "name": "Wayfarer's Folly Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 604,
+          "lng": 680
+        }
+      },
+      {
+        "id": "dry_steppes_5_wayfarer_folly_living_steel",
+        "name": "Wayfarer's Folly Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 486,
+          "lng": 811
+        }
+      },
+      {
+        "id": "dry_steppes_6_bluffs_of_olzei_living_steel",
+        "name": "Bluffs of Olzei Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 449,
+          "lng": 696
+        }
+      },
+      {
+        "id": "dry_steppes_7_field_broken_spears_living_steel",
+        "name": "Field of Broken Spears Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 370,
+          "lng": 557
+        }
+      },
+      {
+        "id": "dry_steppes_8_field_broken_spears_living_steel",
+        "name": "Field of Broken Spears Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 336,
+          "lng": 613
+        }
+      },
+      {
+        "id": "dry_steppes_9_blistered_barrens_living_steel",
+        "name": "Blistered Barrens Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 340,
+          "lng": 727
+        }
+      },
+      {
+        "id": "dry_steppes_10_gatmaa_bushland_living_steel",
+        "name": "Gatmaa Bushland Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 267,
+          "lng": 632
+        }
+      },
+      {
+        "id": "dry_steppes_11_gatmaa_bushland_living_steel",
+        "name": "Gatmaa Bushland Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 198,
+          "lng": 448
+        }
+      },
+      {
+        "id": "dry_steppes_12_desolations_reach_living_steel",
+        "name": "Desolation's Reach Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 148,
+          "lng": 707
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "dry_steppes_event_1",
+        "coords": {
+          "lat": 691,
+          "lng": 885
+        }
+      },
+      {
+        "id": "dry_steppes_event_2",
+        "coords": {
+          "lat": 632,
+          "lng": 827
+        }
+      },
+      {
+        "id": "dry_steppes_event_3",
+        "coords": {
+          "lat": 446,
+          "lng": 588
+        }
+      },
+      {
+        "id": "dry_steppes_event_4",
+        "coords": {
+          "lat": 320,
+          "lng": 686
+        }
+      },
+      {
+        "id": "dry_steppes_event_5",
+        "coords": {
+          "lat": 194,
+          "lng": 507
+        }
+      },
+      {
+        "id": "dry_steppes_event_6",
+        "coords": {
+          "lat": 224,
+          "lng": 603
+        }
+      },
+      {
+        "id": "dry_steppes_event_7",
+        "coords": {
+          "lat": 368,
+          "lng": 515
+        }
+      }
+    ],
+    "bossPaths": [
+      [
+        [
+          116,
+          697
+        ],
+        [
+          114,
+          701
+        ],
+        [
+          114,
+          706
+        ],
+        [
+          117,
+          710
+        ],
+        [
+          120,
+          712
+        ],
+        [
+          118,
+          723
+        ],
+        [
+          116,
+          732
+        ],
+        [
+          114,
+          741
+        ],
+        [
+          111,
+          744
+        ],
+        [
+          108,
+          746
+        ],
+        [
+          105,
+          749
+        ],
+        [
+          105,
+          753
+        ],
+        [
+          107,
+          755
+        ],
+        [
+          109,
+          759
+        ]
+      ],
+      [
+        [
+          244,
+          707
+        ],
+        [
+          251,
+          714
+        ],
+        [
+          257,
+          718
+        ],
+        [
+          267,
+          722
+        ],
+        [
+          270,
+          730
+        ],
+        [
+          271,
+          739
+        ],
+        [
+          271,
+          746
+        ],
+        [
+          270,
+          750
+        ],
+        [
+          266,
+          751
+        ],
+        [
+          262,
+          750
+        ],
+        [
+          259,
+          753
+        ],
+        [
+          257,
+          757
+        ],
+        [
+          260,
+          761
+        ],
+        [
+          269,
+          768
+        ],
+        [
+          281,
+          779
+        ]
+      ],
+      [
+        [
+          477,
+          612
+        ],
+        [
+          474,
+          615
+        ],
+        [
+          469,
+          619
+        ],
+        [
+          464,
+          621
+        ],
+        [
+          459,
+          625
+        ],
+        [
+          456,
+          629
+        ],
+        [
+          455,
+          634
+        ],
+        [
+          455,
+          639
+        ],
+        [
+          457,
+          643
+        ],
+        [
+          460,
+          648
+        ],
+        [
+          464,
+          652
+        ],
+        [
+          470,
+          655
+        ],
+        [
+          475,
+          656
+        ],
+        [
+          471,
+          650
+        ],
+        [
+          469,
+          645
+        ],
+        [
+          471,
+          640
+        ],
+        [
+          475,
+          638
+        ],
+        [
+          479,
+          636
+        ],
+        [
+          481,
+          632
+        ],
+        [
+          482,
+          629
+        ],
+        [
+          477,
+          612
+        ]
+      ],
+      [
+        [
+          465,
+          775
+        ],
+        [
+          465,
+          779
+        ],
+        [
+          467,
+          782
+        ],
+        [
+          471,
+          785
+        ],
+        [
+          478,
+          789
+        ],
+        [
+          507,
+          802
+        ],
+        [
+          510,
+          805
+        ],
+        [
+          514,
+          806
+        ],
+        [
+          518,
+          805
+        ],
+        [
+          523,
+          800
+        ],
+        [
+          527,
+          794
+        ],
+        [
+          529,
+          789
+        ],
+        [
+          530,
+          782
+        ],
+        [
+          533,
+          774
+        ],
+        [
+          533,
+          767
+        ],
+        [
+          530,
+          763
+        ],
+        [
+          525,
+          760
+        ],
+        [
+          520,
+          758
+        ],
+        [
+          514,
+          757
+        ],
+        [
+          509,
+          759
+        ],
+        [
+          504,
+          762
+        ],
+        [
+          489,
+          775
+        ],
+        [
+          485,
+          777
+        ],
+        [
+          480,
+          776
+        ],
+        [
+          476,
+          773
+        ],
+        [
+          471,
+          771
+        ],
+        [
+          467,
+          770
+        ],
+        [
+          465,
+          775
+        ]
+      ]
+    ],
+    "accursedRituals": [
+      {
+        "id": "dry_steppes_accursed_ritual_1",
+        "coords": {
+          "lat": 136,
+          "lng": 675
+        }
+      },
+      {
+        "id": "dry_steppes_accursed_ritual_2",
+        "coords": {
+          "lat": 503,
+          "lng": 748
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "dry_steppes_hellworm_1",
+        "coords": {
+          "lat": 301,
+          "lng": 577
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_2",
+        "coords": {
+          "lat": 242,
+          "lng": 631
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_3",
+        "coords": {
+          "lat": 354,
+          "lng": 559
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_4",
+        "coords": {
+          "lat": 307,
+          "lng": 731
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_5",
+        "coords": {
+          "lat": 268,
+          "lng": 753
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_6",
+        "coords": {
+          "lat": 182,
+          "lng": 695
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_7",
+        "coords": {
+          "lat": 216,
+          "lng": 713
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_8",
+        "coords": {
+          "lat": 194,
+          "lng": 461
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_9",
+        "coords": {
+          "lat": 707,
+          "lng": 795
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_10",
+        "coords": {
+          "lat": 698,
+          "lng": 850
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_11",
+        "coords": {
+          "lat": 527,
+          "lng": 784
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_12",
+        "coords": {
+          "lat": 565,
+          "lng": 755
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_13",
+        "coords": {
+          "lat": 628,
+          "lng": 777
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_14",
+        "coords": {
+          "lat": 460,
+          "lng": 813
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_15",
+        "coords": {
+          "lat": 442,
+          "lng": 649
+        }
+      },
+      {
+        "id": "dry_steppes_hellworm_16",
+        "coords": {
+          "lat": 446,
+          "lng": 613
+        }
+      }
+    ]
+  },
+  {
+    "id": "kehjistan",
+    "name": "Kehjistan",
+    "url": "/images/map/kehjistan.png",
+    "height": 1017,
+    "width": 1474,
+    "chests": [
+      {
+        "id": "kehjistan_1_hakans_oasis",
+        "name": "Hakan's Oasis",
+        "type": "mystery",
+        "coords": {
+          "lat": 57.5,
+          "lng": 582.744
+        }
+      },
+      {
+        "id": "kehjistan_2_forgotten_coastline",
+        "name": "Forgotten Coastline",
+        "type": "mystery",
+        "coords": {
+          "lat": 720.75,
+          "lng": 423.465
+        }
+      },
+      {
+        "id": "kehjistan_3_scorching_dunes",
+        "name": "Scorching Dunes",
+        "type": "mystery",
+        "coords": {
+          "lat": 649,
+          "lng": 578.243
+        }
+      },
+      {
+        "id": "kehjistan_4_shipwreck_cove",
+        "name": "Shipwreck Cove",
+        "type": "mystery",
+        "coords": {
+          "lat": 92.75,
+          "lng": 343.238
+        }
+      },
+      {
+        "id": "kehjistan_5_uldurs_cave",
+        "name": "Uldur's Cave",
+        "type": "mystery",
+        "coords": {
+          "lat": 446.25,
+          "lng": 432.244
+        }
+      },
+      {
+        "id": "kehjistan_6_scorching_dunes",
+        "name": "Scorching Dunes",
+        "type": "mystery",
+        "coords": {
+          "lat": 627,
+          "lng": 608.039063
+        }
+      },
+      {
+        "id": "kehjistan_7_dimmed_grotto",
+        "name": "Dimmed Grotto",
+        "type": "mystery",
+        "coords": {
+          "lat": 630.25,
+          "lng": 434.514225
+        }
+      },
+      {
+        "id": "kehjistan_1_scorching_dunes_living_steel",
+        "name": "Scorching Dunes Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 708,
+          "lng": 644
+        }
+      },
+      {
+        "id": "kehjistan_2_searing_expanse_living_steel",
+        "name": "Searing Expanse Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 665,
+          "lng": 509
+        }
+      },
+      {
+        "id": "kehjistan_3_scorching_dunes_living_steel",
+        "name": "Scorching Dunes Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 655,
+          "lng": 614
+        }
+      },
+      {
+        "id": "kehjistan_4_dunes_of_despair_living_steel",
+        "name": "Dunes of Despair Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 577,
+          "lng": 733
+        }
+      },
+      {
+        "id": "kehjistan_5_dunes_of_despair_living_steel",
+        "name": "Dunes of Despair Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 618,
+          "lng": 820
+        }
+      },
+      {
+        "id": "kehjistan_6_dunes_of_despair_living_steel",
+        "name": "Dunes of Despair Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 638,
+          "lng": 881
+        }
+      },
+      {
+        "id": "kehjistan_7_winding_canyons_living_steel",
+        "name": "Winding Canyons Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 586,
+          "lng": 406
+        }
+      },
+      {
+        "id": "kehjistan_8_forgotten_ruins_living_steel",
+        "name": "Forgotten Ruins Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 523,
+          "lng": 343
+        }
+      },
+      {
+        "id": "kehjistan_9_scorched_gulch_living_steel",
+        "name": "Scorched Gulch Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 482,
+          "lng": 336
+        }
+      },
+      {
+        "id": "kehjistan_10_dahlgur_oasis_living_steel",
+        "name": "Dahlgur Oasis Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 446,
+          "lng": 498
+        }
+      },
+      {
+        "id": "kehjistan_11_scorched_gulch_living_steel",
+        "name": "Scorched Gulch Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 414,
+          "lng": 342
+        }
+      },
+      {
+        "id": "kehjistan_12_scorched_plateau_living_steel",
+        "name": "Scorched Plateau Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 371,
+          "lng": 445
+        }
+      },
+      {
+        "id": "kehjistan_13_pale_sands_living_steel",
+        "name": "Pale Sands Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 285,
+          "lng": 377
+        }
+      },
+      {
+        "id": "kehjistan_14_central_plateau_living_steel",
+        "name": "Central Plateau Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 290,
+          "lng": 586
+        }
+      },
+      {
+        "id": "kehjistan_15_central_plateau_living_steel",
+        "name": "Central Plateau Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 222,
+          "lng": 456
+        }
+      },
+      {
+        "id": "kehjistan_16_central_plateau_living_steel",
+        "name": "Central Plateau Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 238,
+          "lng": 524
+        }
+      },
+      {
+        "id": "kehjistan_17_hakans_oasis_living_steel",
+        "name": "Hakans Oasis Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 118,
+          "lng": 614
+        }
+      },
+      {
+        "id": "kehjistan_18_shipwreck_cove_living_steel",
+        "name": "Shipwreck Cove Living Steel",
+        "type": "living_steel",
+        "coords": {
+          "lat": 46,
+          "lng": 385
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "kehjistan_event_1",
+        "coords": {
+          "lat": 740,
+          "lng": 482
+        }
+      },
+      {
+        "id": "kehjistan_event_2",
+        "coords": {
+          "lat": 655,
+          "lng": 533
+        }
+      },
+      {
+        "id": "kehjistan_event_3",
+        "coords": {
+          "lat": 777,
+          "lng": 756
+        }
+      },
+      {
+        "id": "kehjistan_event_4",
+        "coords": {
+          "lat": 403,
+          "lng": 233
+        }
+      },
+      {
+        "id": "kehjistan_event_5",
+        "coords": {
+          "lat": 390,
+          "lng": 362
+        }
+      },
+      {
+        "id": "kehjistan_event_6",
+        "coords": {
+          "lat": 294,
+          "lng": 407
+        }
+      },
+      {
+        "id": "kehjistan_event_7",
+        "coords": {
+          "lat": 321,
+          "lng": 455
+        }
+      },
+      {
+        "id": "kehjistan_event_8",
+        "coords": {
+          "lat": 89,
+          "lng": 554
+        }
+      },
+      {
+        "id": "kehjistan_event_9",
+        "coords": {
+          "lat": 237,
+          "lng": 562
+        }
+      }
+    ],
+    "bossPaths": [
+      [
+        [
+          843,
+          537
+        ],
+        [
+          840,
+          542
+        ],
+        [
+          836,
+          544
+        ],
+        [
+          832,
+          549
+        ],
+        [
+          829,
+          555
+        ],
+        [
+          828,
+          562
+        ],
+        [
+          826,
+          567
+        ],
+        [
+          822,
+          569
+        ],
+        [
+          815,
+          570
+        ],
+        [
+          809,
+          574
+        ],
+        [
+          804,
+          579
+        ],
+        [
+          798,
+          583
+        ]
+      ],
+      [
+        [
+          666,
+          712
+        ],
+        [
+          641,
+          712
+        ],
+        [
+          632,
+          715
+        ],
+        [
+          628,
+          719
+        ],
+        [
+          625,
+          728
+        ],
+        [
+          626,
+          736
+        ],
+        [
+          632,
+          743
+        ],
+        [
+          644,
+          746
+        ],
+        [
+          654,
+          741
+        ],
+        [
+          661,
+          735
+        ],
+        [
+          666,
+          727
+        ],
+        [
+          668,
+          721
+        ],
+        [
+          666,
+          712
+        ]
+      ],
+      [
+        [
+          676,
+          812
+        ],
+        [
+          638,
+          820
+        ],
+        [
+          631,
+          826
+        ],
+        [
+          627,
+          833
+        ],
+        [
+          626,
+          840
+        ],
+        [
+          633,
+          850
+        ],
+        [
+          638,
+          860
+        ],
+        [
+          643,
+          865
+        ],
+        [
+          649,
+          864
+        ],
+        [
+          657,
+          856
+        ],
+        [
+          679,
+          832
+        ],
+        [
+          684,
+          826
+        ],
+        [
+          683,
+          819
+        ],
+        [
+          676,
+          812
+        ]
+      ],
+      [
+        [
+          559,
+          570
+        ],
+        [
+          556,
+          572
+        ],
+        [
+          552,
+          575
+        ],
+        [
+          549,
+          579
+        ],
+        [
+          549,
+          587
+        ],
+        [
+          554,
+          595
+        ],
+        [
+          554,
+          602
+        ],
+        [
+          558,
+          608
+        ],
+        [
+          563,
+          613
+        ],
+        [
+          589,
+          632
+        ]
+      ],
+      [
+        [
+          535,
+          313
+        ],
+        [
+          532,
+          310
+        ],
+        [
+          517,
+          311
+        ],
+        [
+          512,
+          313
+        ],
+        [
+          507,
+          316
+        ],
+        [
+          505,
+          317
+        ],
+        [
+          507,
+          321
+        ],
+        [
+          508,
+          323
+        ],
+        [
+          507,
+          326
+        ],
+        [
+          505,
+          328
+        ],
+        [
+          502,
+          332
+        ],
+        [
+          501,
+          336
+        ],
+        [
+          500,
+          338
+        ],
+        [
+          502,
+          343
+        ],
+        [
+          505,
+          345
+        ],
+        [
+          522,
+          348
+        ]
+      ],
+      [
+        [
+          398,
+          431
+        ],
+        [
+          405,
+          431
+        ],
+        [
+          408,
+          434
+        ],
+        [
+          411,
+          437
+        ],
+        [
+          414,
+          441
+        ],
+        [
+          416,
+          445
+        ],
+        [
+          418,
+          448
+        ],
+        [
+          421,
+          450
+        ],
+        [
+          431,
+          451
+        ],
+        [
+          435,
+          448
+        ],
+        [
+          438,
+          444
+        ],
+        [
+          443,
+          439
+        ]
+      ],
+      [
+        [
+          211,
+          530
+        ],
+        [
+          211,
+          526
+        ],
+        [
+          208,
+          521
+        ],
+        [
+          205,
+          517
+        ],
+        [
+          203,
+          516
+        ],
+        [
+          190,
+          516
+        ],
+        [
+          186,
+          520
+        ],
+        [
+          182,
+          525
+        ],
+        [
+          180,
+          528
+        ],
+        [
+          177,
+          535
+        ],
+        [
+          176,
+          540
+        ],
+        [
+          176,
+          544
+        ],
+        [
+          181,
+          547
+        ],
+        [
+          190,
+          547
+        ],
+        [
+          197,
+          543
+        ],
+        [
+          204,
+          537
+        ],
+        [
+          211,
+          530
+        ]
+      ],
+      [
+        [
+          118,
+          582
+        ],
+        [
+          118,
+          589
+        ],
+        [
+          117,
+          597
+        ],
+        [
+          114,
+          602
+        ],
+        [
+          110,
+          607
+        ],
+        [
+          104,
+          609
+        ],
+        [
+          98,
+          609
+        ],
+        [
+          95,
+          605
+        ],
+        [
+          94,
+          600
+        ],
+        [
+          96,
+          598
+        ],
+        [
+          102,
+          595
+        ],
+        [
+          104,
+          593
+        ],
+        [
+          107,
+          590
+        ],
+        [
+          107,
+          586
+        ],
+        [
+          110,
+          581
+        ],
+        [
+          112,
+          580
+        ],
+        [
+          118,
+          582
+        ]
+      ]
+    ],
+    "accursedRituals": [
+      {
+        "id": "kehjistan_accursed_ritual_1",
+        "coords": {
+          "lat": 256,
+          "lng": 500
+        }
+      },
+      {
+        "id": "kehjistan_accursed_ritual_2",
+        "coords": {
+          "lat": 526,
+          "lng": 355
+        }
+      },
+      {
+        "id": "kehjistan_accursed_ritual_3",
+        "coords": {
+          "lat": 650,
+          "lng": 504
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "kehjistan_hellworm_1",
+        "coords": {
+          "lat": 348,
+          "lng": 306
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_2",
+        "coords": {
+          "lat": 584,
+          "lng": 458
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_3",
+        "coords": {
+          "lat": 576,
+          "lng": 387
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_4",
+        "coords": {
+          "lat": 558,
+          "lng": 396
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_5",
+        "coords": {
+          "lat": 450,
+          "lng": 306
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_6",
+        "coords": {
+          "lat": 480,
+          "lng": 297
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_7",
+        "coords": {
+          "lat": 508,
+          "lng": 324
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_8",
+        "coords": {
+          "lat": 330,
+          "lng": 352
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_9",
+        "coords": {
+          "lat": 432,
+          "lng": 396
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_10",
+        "coords": {
+          "lat": 391,
+          "lng": 474
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_11",
+        "coords": {
+          "lat": 312,
+          "lng": 387
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_12",
+        "coords": {
+          "lat": 268,
+          "lng": 324
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_13",
+        "coords": {
+          "lat": 238,
+          "lng": 456
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_14",
+        "coords": {
+          "lat": 114,
+          "lng": 515
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_15",
+        "coords": {
+          "lat": 61,
+          "lng": 585
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_16",
+        "coords": {
+          "lat": 268,
+          "lng": 517
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_17",
+        "coords": {
+          "lat": 453,
+          "lng": 515
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_18",
+        "coords": {
+          "lat": 471,
+          "lng": 465
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_19",
+        "coords": {
+          "lat": 294,
+          "lng": 524
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_20",
+        "coords": {
+          "lat": 171,
+          "lng": 551
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_21",
+        "coords": {
+          "lat": 76,
+          "lng": 456
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_22",
+        "coords": {
+          "lat": 626,
+          "lng": 720
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_23",
+        "coords": {
+          "lat": 602,
+          "lng": 566
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_24",
+        "coords": {
+          "lat": 577,
+          "lng": 548
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_25",
+        "coords": {
+          "lat": 650,
+          "lng": 702
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_26",
+        "coords": {
+          "lat": 607,
+          "lng": 789
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_27",
+        "coords": {
+          "lat": 644,
+          "lng": 859
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_28",
+        "coords": {
+          "lat": 615,
+          "lng": 874
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_29",
+        "coords": {
+          "lat": 546,
+          "lng": 788
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_30",
+        "coords": {
+          "lat": 694,
+          "lng": 702
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_31",
+        "coords": {
+          "lat": 576,
+          "lng": 625
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_32",
+        "coords": {
+          "lat": 791,
+          "lng": 551
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_33",
+        "coords": {
+          "lat": 735,
+          "lng": 474
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_34",
+        "coords": {
+          "lat": 760,
+          "lng": 482
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_35",
+        "coords": {
+          "lat": 754,
+          "lng": 508
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_36",
+        "coords": {
+          "lat": 685,
+          "lng": 456
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_37",
+        "coords": {
+          "lat": 707,
+          "lng": 414
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_38",
+        "coords": {
+          "lat": 659,
+          "lng": 551
+        }
+      },
+      {
+        "id": "kehjistan_hellworm_39",
+        "coords": {
+          "lat": 53,
+          "lng": 352
+        }
+      }
+    ]
+  },
+  {
+    "id": "nahantu",
+    "name": "Nahantu",
+    "url": "/images/map/nahantu.png",
+    "height": 866,
+    "width": 1299,
+    "chests": [
+      {
+        "id": "nahantu_chest_mystery_1",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 170,
+          "lng": 240
+        }
+      },
+      {
+        "id": "nahantu_chest_mystery_2",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 487,
+          "lng": 295
+        }
+      },
+      {
+        "id": "nahantu_chest_mystery_3",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 425,
+          "lng": 460
+        }
+      },
+      {
+        "id": "nahantu_chest_mystery_4",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 603,
+          "lng": 579
+        }
+      },
+      {
+        "id": "nahantu_chest_mystery_5",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 424,
+          "lng": 738
+        }
+      },
+      {
+        "id": "nahantu_chest_mystery_6",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 716,
+          "lng": 1033
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "nahantu_events_1",
+        "coords": {
+          "lat": 218,
+          "lng": 272
+        }
+      },
+      {
+        "id": "nahantu_events_2",
+        "coords": {
+          "lat": 288,
+          "lng": 524
+        }
+      },
+      {
+        "id": "nahantu_events_3",
+        "coords": {
+          "lat": 460,
+          "lng": 365
+        }
+      },
+      {
+        "id": "nahantu_events_4",
+        "coords": {
+          "lat": 592,
+          "lng": 587
+        }
+      },
+      {
+        "id": "nahantu_events_5",
+        "coords": {
+          "lat": 671,
+          "lng": 755
+        }
+      },
+      {
+        "id": "nahantu_events_6",
+        "coords": {
+          "lat": 480,
+          "lng": 1013
+        }
+      },
+      {
+        "id": "nahantu_events_7",
+        "coords": {
+          "lat": 378,
+          "lng": 736
+        }
+      },
+      {
+        "id": "nahantu_events_8",
+        "coords": {
+          "lat": 204,
+          "lng": 623
+        }
+      }
+    ],
+    "bossPaths": [],
+    "accursedRituals": [
+      {
+        "id": "nahantu_accursed_ritual_1",
+        "coords": {
+          "lat": 307,
+          "lng": 392
+        }
+      },
+      {
+        "id": "nahantu_accursed_ritual_2",
+        "coords": {
+          "lat": 462,
+          "lng": 633
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "nahantu_hellworm_1",
+        "coords": {
+          "lat": 303,
+          "lng": 730
+        }
+      },
+      {
+        "id": "nahantu_hellworm_2",
+        "coords": {
+          "lat": 279,
+          "lng": 742
+        }
+      },
+      {
+        "id": "nahantu_hellworm_3",
+        "coords": {
+          "lat": 648,
+          "lng": 1102
+        }
+      },
+      {
+        "id": "nahantu_hellworm_4",
+        "coords": {
+          "lat": 523,
+          "lng": 990
+        }
+      },
+      {
+        "id": "nahantu_hellworm_5",
+        "coords": {
+          "lat": 487,
+          "lng": 983
+        }
+      },
+      {
+        "id": "nahantu_hellworm_6",
+        "coords": {
+          "lat": 523,
+          "lng": 477
+        }
+      },
+      {
+        "id": "nahantu_hellworm_7",
+        "coords": {
+          "lat": 620,
+          "lng": 679
+        }
+      },
+      {
+        "id": "nahantu_hellworm_8",
+        "coords": {
+          "lat": 654,
+          "lng": 764
+        }
+      },
+      {
+        "id": "nahantu_hellworm_9",
+        "coords": {
+          "lat": 666,
+          "lng": 981
+        }
+      },
+      {
+        "id": "nahantu_hellworm_10",
+        "coords": {
+          "lat": 672,
+          "lng": 672
+        }
+      },
+      {
+        "id": "nahantu_hellworm_11",
+        "coords": {
+          "lat": 581,
+          "lng": 402
+        }
+      },
+      {
+        "id": "nahantu_hellworm_12",
+        "coords": {
+          "lat": 550,
+          "lng": 420
+        }
+      },
+      {
+        "id": "nahantu_hellworm_13",
+        "coords": {
+          "lat": 582,
+          "lng": 617
+        }
+      },
+      {
+        "id": "nahantu_hellworm_14",
+        "coords": {
+          "lat": 606,
+          "lng": 477
+        }
+      },
+      {
+        "id": "nahantu_hellworm_15",
+        "coords": {
+          "lat": 627,
+          "lng": 451
+        }
+      },
+      {
+        "id": "nahantu_hellworm_16",
+        "coords": {
+          "lat": 581,
+          "lng": 1132
+        }
+      },
+      {
+        "id": "nahantu_hellworm_17",
+        "coords": {
+          "lat": 645,
+          "lng": 1161
+        }
+      },
+      {
+        "id": "nahantu_hellworm_18",
+        "coords": {
+          "lat": 734,
+          "lng": 1170
+        }
+      },
+      {
+        "id": "nahantu_hellworm_19",
+        "coords": {
+          "lat": 636,
+          "lng": 929
+        }
+      },
+      {
+        "id": "nahantu_hellworm_20",
+        "coords": {
+          "lat": 397,
+          "lng": 843
+        }
+      },
+      {
+        "id": "nahantu_hellworm_21",
+        "coords": {
+          "lat": 352,
+          "lng": 782
+        }
+      },
+      {
+        "id": "nahantu_hellworm_22",
+        "coords": {
+          "lat": 367,
+          "lng": 804
+        }
+      },
+      {
+        "id": "nahantu_hellworm_23",
+        "coords": {
+          "lat": 469,
+          "lng": 773
+        }
+      },
+      {
+        "id": "nahantu_hellworm_24",
+        "coords": {
+          "lat": 489,
+          "lng": 658
+        }
+      },
+      {
+        "id": "nahantu_hellworm_25",
+        "coords": {
+          "lat": 433,
+          "lng": 605
+        }
+      },
+      {
+        "id": "nahantu_hellworm_26",
+        "coords": {
+          "lat": 406,
+          "lng": 605
+        }
+      },
+      {
+        "id": "nahantu_hellworm_27",
+        "coords": {
+          "lat": 227,
+          "lng": 642
+        }
+      },
+      {
+        "id": "nahantu_hellworm_28",
+        "coords": {
+          "lat": 153,
+          "lng": 446
+        }
+      },
+      {
+        "id": "nahantu_hellworm_29",
+        "coords": {
+          "lat": 352,
+          "lng": 484
+        }
+      },
+      {
+        "id": "nahantu_hellworm_30",
+        "coords": {
+          "lat": 370,
+          "lng": 493
+        }
+      },
+      {
+        "id": "nahantu_hellworm_31",
+        "coords": {
+          "lat": 395,
+          "lng": 438
+        }
+      },
+      {
+        "id": "nahantu_hellworm_32",
+        "coords": {
+          "lat": 153,
+          "lng": 334
+        }
+      },
+      {
+        "id": "nahantu_hellworm_33",
+        "coords": {
+          "lat": 236,
+          "lng": 460
+        }
+      },
+      {
+        "id": "nahantu_hellworm_34",
+        "coords": {
+          "lat": 487,
+          "lng": 385
+        }
+      },
+      {
+        "id": "nahantu_hellworm_35",
+        "coords": {
+          "lat": 309,
+          "lng": 352
+        }
+      }
+    ]
+  },
+  {
+    "id": "skovos",
+    "name": "Skovos",
+    "url": "/images/map/skovos.png",
+    "height": 1110,
+    "width": 1786,
+    "chests": [
+      {
+        "id": "skovos_chest_mystery_1",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 806,
+          "lng": 557
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_2",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 728,
+          "lng": 514
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_3",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 600,
+          "lng": 559
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_4",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 485,
+          "lng": 357
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_5",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 355,
+          "lng": 1187
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_6",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 148,
+          "lng": 1209
+        }
+      },
+      {
+        "id": "skovos_chest_mystery_7",
+        "type": "mystery",
+        "name": "Mystery Chest",
+        "coords": {
+          "lat": 363,
+          "lng": 1435
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "skovos_events_1",
+        "coords": {
+          "lat": 135,
+          "lng": 1152
+        }
+      },
+      {
+        "id": "skovos_events_2",
+        "coords": {
+          "lat": 371,
+          "lng": 1265
+        }
+      },
+      {
+        "id": "skovos_events_3",
+        "coords": {
+          "lat": 568,
+          "lng": 1236
+        }
+      },
+      {
+        "id": "skovos_events_4",
+        "coords": {
+          "lat": 443,
+          "lng": 949
+        }
+      },
+      {
+        "id": "skovos_events_5",
+        "coords": {
+          "lat": 694,
+          "lng": 891
+        }
+      },
+      {
+        "id": "skovos_events_6",
+        "coords": {
+          "lat": 530,
+          "lng": 673
+        }
+      },
+      {
+        "id": "skovos_events_7",
+        "coords": {
+          "lat": 502,
+          "lng": 435
+        }
+      }
+    ],
+    "bossPaths": [],
+    "accursedRituals": [
+      {
+        "id": "skovos_accursed_ritual_1",
+        "coords": {
+          "lat": 692,
+          "lng": 547
+        }
+      },
+      {
+        "id": "skovos_accursed_ritual_2",
+        "coords": {
+          "lat": 155,
+          "lng": 1251
+        }
+      }
+    ],
+    "hellworms": [
+      {
+        "id": "skovos_hellworm_1",
+        "coords": {
+          "lat": 133,
+          "lng": 1077
+        }
+      },
+      {
+        "id": "skovos_hellworm_2",
+        "coords": {
+          "lat": 613,
+          "lng": 927
+        }
+      },
+      {
+        "id": "skovos_hellworm_3",
+        "coords": {
+          "lat": 564,
+          "lng": 512
+        }
+      },
+      {
+        "id": "skovos_hellworm_4",
+        "coords": {
+          "lat": 645,
+          "lng": 802
+        }
+      },
+      {
+        "id": "skovos_hellworm_5",
+        "coords": {
+          "lat": 546,
+          "lng": 884
+        }
+      },
+      {
+        "id": "skovos_hellworm_6",
+        "coords": {
+          "lat": 583,
+          "lng": 1011
+        }
+      },
+      {
+        "id": "skovos_hellworm_7",
+        "coords": {
+          "lat": 457,
+          "lng": 850
+        }
+      },
+      {
+        "id": "skovos_hellworm_8",
+        "coords": {
+          "lat": 583,
+          "lng": 700
+        }
+      },
+      {
+        "id": "skovos_hellworm_9",
+        "coords": {
+          "lat": 522,
+          "lng": 638
+        }
+      },
+      {
+        "id": "skovos_hellworm_10",
+        "coords": {
+          "lat": 466,
+          "lng": 670
+        }
+      },
+      {
+        "id": "skovos_hellworm_11",
+        "coords": {
+          "lat": 227,
+          "lng": 1174
+        }
+      },
+      {
+        "id": "skovos_hellworm_12",
+        "coords": {
+          "lat": 521,
+          "lng": 1272
+        }
+      },
+      {
+        "id": "skovos_hellworm_13",
+        "coords": {
+          "lat": 486,
+          "lng": 1253
+        }
+      },
+      {
+        "id": "skovos_hellworm_14",
+        "coords": {
+          "lat": 411,
+          "lng": 1358
+        }
+      },
+      {
+        "id": "skovos_hellworm_15",
+        "coords": {
+          "lat": 555,
+          "lng": 1312
+        }
+      },
+      {
+        "id": "skovos_hellworm_16",
+        "coords": {
+          "lat": 266,
+          "lng": 1330
+        }
+      },
+      {
+        "id": "skovos_hellworm_17",
+        "coords": {
+          "lat": 209,
+          "lng": 1076
+        }
+      },
+      {
+        "id": "skovos_hellworm_18",
+        "coords": {
+          "lat": 504,
+          "lng": 453
+        }
+      },
+      {
+        "id": "skovos_hellworm_19",
+        "coords": {
+          "lat": 457,
+          "lng": 419
+        }
+      },
+      {
+        "id": "skovos_hellworm_20",
+        "coords": {
+          "lat": 645,
+          "lng": 548
+        }
+      },
+      {
+        "id": "skovos_hellworm_21",
+        "coords": {
+          "lat": 757,
+          "lng": 718
+        }
+      },
+      {
+        "id": "skovos_hellworm_22",
+        "coords": {
+          "lat": 420,
+          "lng": 539
+        }
+      },
+      {
+        "id": "skovos_hellworm_23",
+        "coords": {
+          "lat": 429,
+          "lng": 512
+        }
+      }
+    ]
+  }
+]
