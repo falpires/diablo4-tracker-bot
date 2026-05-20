@@ -23,13 +23,13 @@ HELLTIDE_ANCHOR_MS = 1779292500000
 HELLTIDE_ANCHOR_INDEX = 6
 
 HELLTIDE_ROTATION = [
-    "Fractured Peaks",
-    "Dry Steppes",
-    "Hawezar",
-    "Kehjistan",
-    "Scosglen",
-    "Nahantu",
-    "Skovos",
+    "Fractured Peaks",   # idx 0 — cycle 1 confirmed in-game
+    "Kehjistan",         # idx 1 — cycle 2 confirmed in-game
+    "Scosglen",          # idx 2 — cycle 3 inferred (concurrent second helltide)
+    "Dry Steppes",       # idx 3 — order unverified beyond this point
+    "Hawezar",           # idx 4
+    "Nahantu",           # idx 5
+    "Skovos",            # idx 6 — anchor (HELLTIDE_ANCHOR_INDEX = 6)
 ]
 
 
