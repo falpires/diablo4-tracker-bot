@@ -1,3 +1,4 @@
+import asyncio
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -17,7 +18,14 @@ class SoundCog(commands.Cog):
             )
             return
 
+        await interaction.response.defer(ephemeral=True)
         voice_channel = interaction.user.voice.channel
+
+        vc = interaction.guild.voice_client
+        if vc and vc.channel != voice_channel:
+            await vc.move_to(voice_channel)
+        elif not vc:
+            vc = await voice_channel.connect()
 
         route = discord.http.Route(
             "POST",
@@ -31,7 +39,12 @@ class SoundCog(commands.Cog):
                 "source_guild_id": str(interaction.guild_id),
             },
         )
-        await interaction.response.send_message("🔊", ephemeral=True)
+
+        await interaction.followup.send("🔊", ephemeral=True)
+
+        # Leave after a moment so bot doesn't idle in channel
+        await asyncio.sleep(3)
+        await vc.disconnect()
 
 
 async def setup(bot: commands.Bot) -> None:
