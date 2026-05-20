@@ -13,6 +13,7 @@ COGS = [
     "commands.worldboss",
     "commands.legion",
     "commands.schedule",
+    "commands.sound",
 ]
 
 
