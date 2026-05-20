@@ -17,14 +17,10 @@ ZONE_NAME_TO_ID: dict[str, str] = {
 HELLTIDE_CYCLE_MS = 60 * 60 * 1000
 
 # Known anchor: the spawn at HELLTIDE_ANCHOR_MS was HELLTIDE_ROTATION[HELLTIDE_ANCHOR_INDEX]
-# Best guess from user report: Hawezar (idx 2) + Skovos (idx 6) were simultaneously active
-# at 2026-05-20 ~13:50 UTC (within cycle starting 12:55 UTC). Verify in-game to confirm.
+# Anchor index 6 = Skovos confirmed: cycle 1 from anchor gives FP (idx 0), user confirmed FP active.
+# D4 sometimes runs a second concurrent helltide but with no reliable API data for it.
 HELLTIDE_ANCHOR_MS = 1779292500000
-HELLTIDE_ANCHOR_INDEX = 2
-
-# D4 runs two concurrent helltides. The second runs at this offset in the rotation.
-# Derived from user report: when base=Hawezar(2), expansion=Skovos(6) → offset=4
-HELLTIDE_SECOND_OFFSET = 4
+HELLTIDE_ANCHOR_INDEX = 6
 
 HELLTIDE_ROTATION = [
     "Fractured Peaks",
@@ -43,11 +39,6 @@ def get_helltide_zone(spawn_time_ms: int) -> str:
     return HELLTIDE_ROTATION[idx]
 
 
-def get_helltide_second_zone(spawn_time_ms: int) -> str:
-    """Return the zone for the second concurrent helltide (expansion zones)."""
-    cycles = (spawn_time_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS
-    idx = (HELLTIDE_ANCHOR_INDEX + int(cycles) + HELLTIDE_SECOND_OFFSET) % len(HELLTIDE_ROTATION)
-    return HELLTIDE_ROTATION[idx]
 
 
 # Loaded from the extracted helltides.com zone data

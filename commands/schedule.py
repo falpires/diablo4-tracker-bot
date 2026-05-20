@@ -4,14 +4,14 @@ from discord import app_commands
 from discord.ext import commands
 
 from api.diablo4life import fetch_events
-from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX, HELLTIDE_SECOND_OFFSET
+from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX
 from utils.formatters import dt, dt_time, ts, is_active, HELLTIDE_DURATION_MS
 
 LEGION_INTERVAL_MS = 25 * 60 * 1000
 
 
-def _helltide_schedule(api_next_ms: int, count: int = 4) -> list[tuple[int, str, str, bool]]:
-    """Return (spawn_ms, zone1, zone2, active) tuples starting from current or next spawn."""
+def _helltide_schedule(api_next_ms: int, count: int = 4) -> list[tuple[int, str, bool]]:
+    """Return (spawn_ms, zone, active) tuples starting from current or next spawn."""
     prev_ms = api_next_ms - HELLTIDE_CYCLE_MS
     base_ms = prev_ms if is_active(prev_ms, HELLTIDE_DURATION_MS) else api_next_ms
 
@@ -19,10 +19,9 @@ def _helltide_schedule(api_next_ms: int, count: int = 4) -> list[tuple[int, str,
     for i in range(count):
         spawn_ms = base_ms + i * HELLTIDE_CYCLE_MS
         cycles = int((spawn_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS)
-        idx1 = (HELLTIDE_ANCHOR_INDEX + cycles) % len(HELLTIDE_ROTATION)
-        idx2 = (idx1 + HELLTIDE_SECOND_OFFSET) % len(HELLTIDE_ROTATION)
+        idx = (HELLTIDE_ANCHOR_INDEX + cycles) % len(HELLTIDE_ROTATION)
         active = is_active(spawn_ms, HELLTIDE_DURATION_MS)
-        results.append((spawn_ms, HELLTIDE_ROTATION[idx1], HELLTIDE_ROTATION[idx2], active))
+        results.append((spawn_ms, HELLTIDE_ROTATION[idx], active))
     return results
 
 
@@ -48,10 +47,11 @@ class ScheduleCog(commands.Cog):
         if event in ("all", "helltide"):
             api_next_ms = data.get("helltide", {}).get("time", 0)
             lines = []
-            for spawn_ms, zone1, zone2, active in _helltide_schedule(api_next_ms or now_ms):
+            for spawn_ms, zone, active in _helltide_schedule(api_next_ms or now_ms):
                 prefix = "**🔴 NOW**" if active else dt(spawn_ms)
-                lines.append(f"{prefix} {dt_time(spawn_ms)} — {zone1} / {zone2}")
-            embed.add_field(name="🔥 Helltide (x2)", value="\n".join(lines) or "No data", inline=False)
+                suffix = " *(+base)*" if zone in ("Nahantu", "Skovos") else ""
+                lines.append(f"{prefix} {dt_time(spawn_ms)} — {zone}{suffix}")
+            embed.add_field(name="🔥 Helltide", value="\n".join(lines) or "No data", inline=False)
 
         if event in ("all", "worldboss"):
             boss = data.get("worldBoss", {})

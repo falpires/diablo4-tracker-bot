@@ -4,8 +4,10 @@ from discord.ext import commands
 
 from api.diablo4life import fetch_events
 from maps.generator import generate_helltide_map
-from maps.zones import get_helltide_zone, get_helltide_second_zone, HELLTIDE_CYCLE_MS
+from maps.zones import get_helltide_zone, HELLTIDE_CYCLE_MS
 from utils.formatters import helltide_embed, is_active, HELLTIDE_DURATION_MS, dt, dt_time
+
+EXPANSION_ZONES = {"Nahantu", "Skovos"}
 
 
 def _resolve_spawn(next_ms: int) -> int:
@@ -30,26 +32,24 @@ class HelltideCog(commands.Cog):
         next_ms = ht.get("time", 0)
         spawn_ms = _resolve_spawn(next_ms) if next_ms else 0
 
-        zone1 = get_helltide_zone(spawn_ms) if spawn_ms else None
-        zone2 = get_helltide_second_zone(spawn_ms) if spawn_ms else None
+        zone = get_helltide_zone(spawn_ms) if spawn_ms else None
 
-        # Build primary embed for helltide 1
         embed = helltide_embed(
             {"time": spawn_ms, "chestRespawn": data.get("chestRespawn", 0)},
-            zone1,
+            zone,
         )
 
-        # Add second concurrent helltide info
-        if zone2 and spawn_ms:
-            active2 = is_active(spawn_ms, HELLTIDE_DURATION_MS)
-            if active2:
+        # When expansion zone is active, a second helltide also runs in base zones
+        if zone in EXPANSION_ZONES and spawn_ms:
+            active = is_active(spawn_ms, HELLTIDE_DURATION_MS)
+            if active:
                 end_ms = spawn_ms + HELLTIDE_DURATION_MS
-                val2 = f"**Active** — ends {dt(end_ms)} ({dt_time(end_ms)})"
+                val = f"**Active** — ends {dt(end_ms)} ({dt_time(end_ms)})\nCheck in-game for zone"
             else:
-                val2 = f"Starts {dt(spawn_ms)} ({dt_time(spawn_ms)})"
-            embed.add_field(name=f"🔥 Helltide 2 — {zone2}", value=val2, inline=False)
+                val = f"Starts {dt(spawn_ms)} ({dt_time(spawn_ms)})\nCheck in-game for zone"
+            embed.add_field(name="🔥 Second Helltide (base zones)", value=val, inline=False)
 
-        map_buf = generate_helltide_map(zone1)
+        map_buf = generate_helltide_map(zone)
         if map_buf:
             file = discord.File(map_buf, filename="helltide_map.png")
             embed.set_image(url="attachment://helltide_map.png")
