@@ -12,14 +12,19 @@ ZONE_NAME_TO_ID: dict[str, str] = {
     "Skovos": "skovos",
 }
 
-# Helltide zone rotation (Season 7 / 2026 — verify anchor if wrong)
-# 75-minute cycle, 55 min active, 20 min downtime
-HELLTIDE_CYCLE_MS = 75 * 60 * 1000
+# Helltide zone rotation (Season 8 / 2026 — verify anchor if wrong)
+# 60-minute cycle, 55 min active, 5 min downtime
+HELLTIDE_CYCLE_MS = 60 * 60 * 1000
 
 # Known anchor: the spawn at HELLTIDE_ANCHOR_MS was HELLTIDE_ROTATION[HELLTIDE_ANCHOR_INDEX]
-# Set HELLTIDE_ANCHOR_INDEX once you verify what zone spawned at 2026-05-20 12:55 UTC
+# Best guess from user report: Hawezar (idx 2) + Skovos (idx 6) were simultaneously active
+# at 2026-05-20 ~13:50 UTC (within cycle starting 12:55 UTC). Verify in-game to confirm.
 HELLTIDE_ANCHOR_MS = 1779292500000
-HELLTIDE_ANCHOR_INDEX = 0
+HELLTIDE_ANCHOR_INDEX = 2
+
+# D4 runs two concurrent helltides. The second runs at this offset in the rotation.
+# Derived from user report: when base=Hawezar(2), expansion=Skovos(6) → offset=4
+HELLTIDE_SECOND_OFFSET = 4
 
 HELLTIDE_ROTATION = [
     "Fractured Peaks",
@@ -35,6 +40,13 @@ HELLTIDE_ROTATION = [
 def get_helltide_zone(spawn_time_ms: int) -> str:
     cycles = (spawn_time_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS
     idx = (HELLTIDE_ANCHOR_INDEX + int(cycles)) % len(HELLTIDE_ROTATION)
+    return HELLTIDE_ROTATION[idx]
+
+
+def get_helltide_second_zone(spawn_time_ms: int) -> str:
+    """Return the zone for the second concurrent helltide (expansion zones)."""
+    cycles = (spawn_time_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS
+    idx = (HELLTIDE_ANCHOR_INDEX + int(cycles) + HELLTIDE_SECOND_OFFSET) % len(HELLTIDE_ROTATION)
     return HELLTIDE_ROTATION[idx]
 
 
