@@ -8,28 +8,14 @@ from discord.ext import commands
 
 from api.diablo4life import fetch_events
 from api.firebase import fetch_helltide_a
-from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX, get_boss_spawn, BOSS_INTERVAL_MS
-from utils.formatters import dt, dt_time, ts, is_active, HELLTIDE_DURATION_MS
+from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX, get_boss_spawn
+from utils.formatters import dt, dt_time, is_active, HELLTIDE_DURATION_MS
 
 LEGION_INTERVAL_MS = 25 * 60 * 1000
+EXPANSION_ZONES = {"Nahantu", "Skovos"}
 
 
-def _helltide_schedule(api_next_ms: int, count: int = 4) -> list[tuple[int, str, bool]]:
-    """Return (spawn_ms, zone, active) tuples for Helltide B rotation."""
-    prev_ms = api_next_ms - HELLTIDE_CYCLE_MS
-    base_ms = prev_ms if is_active(prev_ms, HELLTIDE_DURATION_MS) else api_next_ms
-
-    results = []
-    for i in range(count):
-        spawn_ms = base_ms + i * HELLTIDE_CYCLE_MS
-        cycles = int((spawn_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS)
-        idx = (HELLTIDE_ANCHOR_INDEX + cycles) % len(HELLTIDE_ROTATION)
-        active = is_active(spawn_ms, HELLTIDE_DURATION_MS)
-        results.append((spawn_ms, HELLTIDE_ROTATION[idx], active))
-    return results
-
-
-def _parse_firebase_helltide(fb: dict) -> tuple[int, int, str | None]:
+def _parse_firebase(fb: dict) -> tuple[int, int, str | None]:
     zone = fb.get("zone")
     start_raw = fb.get("startTime") or fb.get("id")
     end_raw = fb.get("endTime")
@@ -42,6 +28,17 @@ def _parse_firebase_helltide(fb: dict) -> tuple[int, int, str | None]:
     else:
         end_ms = start_ms + HELLTIDE_DURATION_MS
     return start_ms, end_ms, zone
+
+
+def _helltide_future_zones(anchor_spawn_ms: int, count: int = 3) -> list[tuple[int, str]]:
+    """Given the confirmed current spawn_ms, return next `count` spawns with zones."""
+    results = []
+    for i in range(1, count + 1):
+        spawn_ms = anchor_spawn_ms + i * HELLTIDE_CYCLE_MS
+        cycles = int((spawn_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS)
+        idx = (HELLTIDE_ANCHOR_INDEX + cycles) % len(HELLTIDE_ROTATION)
+        results.append((spawn_ms, HELLTIDE_ROTATION[idx]))
+    return results
 
 
 class ScheduleCog(commands.Cog):
@@ -59,47 +56,49 @@ class ScheduleCog(commands.Cog):
     async def schedule(self, interaction: discord.Interaction, event: str = "all") -> None:
         await interaction.response.defer()
 
-        data, fb = await asyncio.gather(
-            fetch_events(),
+        fb, data = await asyncio.gather(
             fetch_helltide_a(),
+            fetch_events(),
             return_exceptions=True,
         )
-        if isinstance(data, Exception):
-            data = {}
         if isinstance(fb, Exception):
             fb = None
+        if isinstance(data, Exception):
+            data = {}
 
         now_ms = int(time.time() * 1000)
-
         embed = discord.Embed(title="📅 Event Schedule", color=discord.Color.from_rgb(60, 30, 80))
 
         if event in ("all", "helltide"):
             lines = []
 
-            # Helltide A from Firebase (spawns :00 UTC)
             if fb and isinstance(fb, dict):
-                ht_a_start_ms, ht_a_end_ms, ht_a_zone = _parse_firebase_helltide(fb)
-                ht_a_active = ht_a_start_ms <= now_ms <= ht_a_end_ms
-                prefix = "**🔴 NOW**" if ht_a_active else dt(ht_a_start_ms)
-                zone_label = ht_a_zone or "Unknown"
-                suffix = " *(+base)*" if zone_label in ("Nahantu", "Skovos") else ""
-                lines.append(f"A: {prefix} {dt_time(ht_a_start_ms)} — {zone_label}{suffix}")
+                start_ms, end_ms, zone = _parse_firebase(fb)
+                active = start_ms <= now_ms <= end_ms
+                zone_label = zone.title() if zone else "Unknown"
+                suffix = " *(+base)*" if zone and zone.lower() in {z.lower() for z in EXPANSION_ZONES} else ""
+                prefix = "**🔴 NOW**" if active else dt(start_ms)
+                lines.append(f"{prefix} {dt_time(start_ms)} — {zone_label}{suffix}")
 
-                # Next A spawn
-                next_a_ms = ht_a_start_ms + HELLTIDE_CYCLE_MS
-                next_a_cycles = int((next_a_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS)
-                next_a_idx = (HELLTIDE_ANCHOR_INDEX + next_a_cycles) % len(HELLTIDE_ROTATION)
-                next_a_zone = HELLTIDE_ROTATION[next_a_idx]
-                next_a_suffix = " *(+base)*" if next_a_zone in ("Nahantu", "Skovos") else ""
-                lines.append(f"A: {dt(next_a_ms)} {dt_time(next_a_ms)} — {next_a_zone}{next_a_suffix}")
-
-            # Helltide B from diablo4.life (spawns :55 UTC)
-            api_next_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
-            if api_next_ms:
-                for spawn_ms, zone, active in _helltide_schedule(api_next_ms, count=3):
-                    prefix = "**🔴 NOW**" if active else dt(spawn_ms)
-                    suffix = " *(+base)*" if zone in ("Nahantu", "Skovos") else ""
-                    lines.append(f"B: {prefix} {dt_time(spawn_ms)} — {zone}{suffix}")
+                # Future spawns from deterministic rotation
+                for spawn_ms, next_zone in _helltide_future_zones(start_ms, count=3):
+                    next_suffix = " *(+base)*" if next_zone in EXPANSION_ZONES else ""
+                    lines.append(f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {next_zone}{next_suffix}")
+            else:
+                # Fallback to diablo4.life
+                api_next_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
+                if api_next_ms:
+                    prev_ms = api_next_ms - HELLTIDE_CYCLE_MS
+                    base_ms = prev_ms if is_active(prev_ms, HELLTIDE_DURATION_MS) else api_next_ms
+                    for i in range(4):
+                        spawn_ms = base_ms + i * HELLTIDE_CYCLE_MS
+                        cycles = int((spawn_ms - HELLTIDE_ANCHOR_MS) // HELLTIDE_CYCLE_MS)
+                        idx = (HELLTIDE_ANCHOR_INDEX + cycles) % len(HELLTIDE_ROTATION)
+                        zone = HELLTIDE_ROTATION[idx]
+                        active = is_active(spawn_ms, HELLTIDE_DURATION_MS)
+                        suffix = " *(+base)*" if zone in EXPANSION_ZONES else ""
+                        prefix = "**🔴 NOW**" if active else dt(spawn_ms)
+                        lines.append(f"{prefix} {dt_time(spawn_ms)} — {zone}{suffix}")
 
             embed.add_field(name="🔥 Helltide", value="\n".join(lines) or "No data", inline=False)
 
@@ -112,7 +111,7 @@ class ScheduleCog(commands.Cog):
             embed.add_field(name="👹 World Boss", value=val, inline=False)
 
         if event in ("all", "legion"):
-            ze = (data.get("zoneEvent", {}) if isinstance(data, dict) else {})
+            ze = data.get("zoneEvent", {}) if isinstance(data, dict) else {}
             ts_ms = ze.get("time", 0)
             lines = []
             if ts_ms:
