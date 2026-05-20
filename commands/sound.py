@@ -9,7 +9,7 @@ class SoundCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="sound", description="Play a soundboard effect in your voice channel")
+    @app_commands.command(name="julian", description="Play a soundboard effect in your voice channel")
     async def sound(self, interaction: discord.Interaction) -> None:
         if not interaction.user.voice or not interaction.user.voice.channel:
             await interaction.response.send_message(
