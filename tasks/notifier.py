@@ -7,7 +7,7 @@ import discord
 from discord.ext import commands, tasks
 
 from api.diablo4life import fetch_events
-from api.firebase import fetch_helltide_a, fetch_world_boss_firebase
+from api.firebase import fetch_world_boss_firebase
 from commands.subscribe import get_channel_entries, get_last_message, set_last_message
 from commands.worldboss import _parse_world_boss, _full_boss_name
 from maps.zones import ZONE_ID_TO_NAME
@@ -47,15 +47,14 @@ class NotifierCog(commands.Cog):
     async def _check_all(self) -> None:
         now_ms = int(time.time() * 1000)
 
-        fb_ht, fb_boss, data = await asyncio.gather(
-            fetch_helltide_a(),
+        fb_boss, data = await asyncio.gather(
             fetch_world_boss_firebase(),
             fetch_events(),
             return_exceptions=True,
         )
 
         await asyncio.gather(
-            self._check_helltide(fb_ht, now_ms),
+            self._check_helltide(data, now_ms),
             self._check_worldboss(fb_boss, data, now_ms),
             self._check_legion(data, now_ms),
         )
@@ -64,14 +63,11 @@ class NotifierCog(commands.Cog):
         cutoff = now_ms - 2 * 60 * 60 * 1000
         self._notified = {k for k in self._notified if k[1] > cutoff}
 
-    async def _check_helltide(self, fb, now_ms: int) -> None:
-        if isinstance(fb, Exception) or not fb:
+    async def _check_helltide(self, data, now_ms: int) -> None:
+        # Use diablo4.life next-spawn time — Firebase startTime only updates after spawn starts
+        if isinstance(data, Exception) or not data:
             return
-        start_raw = fb.get("startTime") or fb.get("id")
-        if isinstance(start_raw, str):
-            spawn_ms = int(datetime.fromisoformat(start_raw.replace("Z", "+00:00")).timestamp() * 1000)
-        else:
-            spawn_ms = int(start_raw) * 1000 if start_raw else 0
+        spawn_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
         if not spawn_ms or not _in_alert_window(spawn_ms, now_ms):
             return
         key = ("helltide", spawn_ms)
@@ -79,8 +75,8 @@ class NotifierCog(commands.Cog):
             return
         self._notified.add(key)
 
-        zone_raw = fb.get("zone")
-        zone = ZONE_ID_TO_NAME.get(zone_raw, zone_raw.title() if zone_raw else "Unknown")
+        from maps.zones import get_helltide_zone
+        zone = get_helltide_zone(spawn_ms)
         embed = discord.Embed(
             title="🔥 Helltide Alert",
             description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n**Zone:** {zone}",
