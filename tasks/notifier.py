@@ -9,16 +9,16 @@ from api.diablo4life import fetch_events
 from api.firebase import fetch_world_boss_firebase
 from commands.subscribe import get_channel_entries, get_last_message, set_last_message
 from commands.worldboss import _parse_world_boss
-from constants import ALERT_WINDOW_MS, ALERT_TOLERANCE_MS, HELLTIDE_DURATION_MS, HELLTIDE_CYCLE_MS
+from constants import ALERT_WINDOW_MS, ALERT_TOLERANCE_MS
 from maps.zones import ZONE_ID_TO_NAME
-from utils.formatters import dt, dt_time, is_active
+from utils.formatters import dt, dt_time
 
 log = logging.getLogger("diablo-bot.notifier")
 
 
 def _in_alert_window(spawn_ms: int, now_ms: int) -> bool:
     remaining = spawn_ms - now_ms
-    return ALERT_WINDOW_MS - ALERT_TOLERANCE_MS <= remaining <= ALERT_WINDOW_MS + ALERT_TOLERANCE_MS
+    return ALERT_WINDOW_MS - ALERT_TOLERANCE_MS <= remaining <= ALERT_WINDOW_MS
 
 
 class NotifierCog(commands.Cog):
@@ -66,9 +66,6 @@ class NotifierCog(commands.Cog):
             return
         spawn_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
         if not spawn_ms or not _in_alert_window(spawn_ms, now_ms):
-            return
-        # Skip if a helltide is currently active — spawn_ms is the *next* helltide
-        if is_active(spawn_ms - HELLTIDE_CYCLE_MS, HELLTIDE_DURATION_MS):
             return
         key = ("helltide", spawn_ms)
         if key in self._notified:
