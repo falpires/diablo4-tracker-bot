@@ -18,53 +18,62 @@ EVENT_CHOICES = [
 
 def _load() -> dict:
     if SUBS_FILE.exists():
-        return json.loads(SUBS_FILE.read_text())
-    return {"subscriptions": {e: [] for e in ALL_EVENTS}, "last_messages": {}}
+        data = json.loads(SUBS_FILE.read_text())
+        # Migrate old list[int] format to dict[str, str|None]
+        subs = data.get("subscriptions", {})
+        for event, val in subs.items():
+            if isinstance(val, list):
+                subs[event] = {str(c): None for c in val}
+        return data
+    return {"subscriptions": {e: {} for e in ALL_EVENTS}, "last_messages": {}}
 
 
 def _save(data: dict) -> None:
     SUBS_FILE.write_text(json.dumps(data, indent=2))
 
 
+def get_channel_entries(event_type: str) -> list[tuple[int, str | None]]:
+    """Return (channel_id, custom_message) pairs for an event."""
+    subs = _load()["subscriptions"].get(event_type, {})
+    return [(int(cid), msg) for cid, msg in subs.items()]
+
+
 def get_channels(event_type: str) -> list[int]:
-    return _load()["subscriptions"].get(event_type, [])
+    return [cid for cid, _ in get_channel_entries(event_type)]
 
 
 def get_last_message(event_type: str, channel_id: int) -> int | None:
-    data = _load()
-    return data.get("last_messages", {}).get(f"{event_type}:{channel_id}")
+    return _load().get("last_messages", {}).get(f"{event_type}:{channel_id}")
 
 
 def set_last_message(event_type: str, channel_id: int, message_id: int) -> None:
     data = _load()
-    if "last_messages" not in data:
-        data["last_messages"] = {}
-    data["last_messages"][f"{event_type}:{channel_id}"] = message_id
+    data.setdefault("last_messages", {})[f"{event_type}:{channel_id}"] = message_id
     _save(data)
 
 
-def add_subscription(channel_id: int, event_type: str) -> None:
+def add_subscription(channel_id: int, event_type: str, message: str | None = None) -> None:
     data = _load()
-    subs = data.setdefault("subscriptions", {e: [] for e in ALL_EVENTS})
-    if event_type not in subs:
-        subs[event_type] = []
-    if channel_id not in subs[event_type]:
-        subs[event_type].append(channel_id)
+    subs = data.setdefault("subscriptions", {e: {} for e in ALL_EVENTS})
+    subs.setdefault(event_type, {})[str(channel_id)] = message
     _save(data)
 
 
 def remove_subscription(channel_id: int, event_type: str) -> None:
     data = _load()
-    subs = data.get("subscriptions", {})
-    if event_type in subs:
-        subs[event_type] = [c for c in subs[event_type] if c != channel_id]
+    data.get("subscriptions", {}).get(event_type, {}).pop(str(channel_id), None)
     _save(data)
 
 
-def list_subscriptions(channel_id: int) -> list[str]:
+def list_subscriptions(channel_id: int) -> list[tuple[str, str | None]]:
+    """Return (event_type, custom_message) for each active subscription in this channel."""
     data = _load()
     subs = data.get("subscriptions", {})
-    return [e for e, channels in subs.items() if channel_id in channels]
+    return [
+        (event, entries.get(str(channel_id)))
+        for event, entries in subs.items()
+        if str(channel_id) in entries
+    ]
 
 
 class SubscribeCog(commands.Cog):
@@ -72,16 +81,25 @@ class SubscribeCog(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="subscribe", description="Subscribe this channel to 15-min spawn alerts")
-    @app_commands.describe(event="Event type to subscribe to")
+    @app_commands.describe(
+        event="Event type to subscribe to",
+        message="Optional message to send with the alert (e.g. @everyone or a role ping)",
+    )
     @app_commands.choices(event=EVENT_CHOICES)
     @app_commands.default_permissions(manage_channels=True)
-    async def subscribe(self, interaction: discord.Interaction, event: str = "all") -> None:
+    async def subscribe(
+        self,
+        interaction: discord.Interaction,
+        event: str = "all",
+        message: str | None = None,
+    ) -> None:
         targets = ALL_EVENTS if event == "all" else [event]
         for t in targets:
-            add_subscription(interaction.channel_id, t)
+            add_subscription(interaction.channel_id, t, message)
         names = ", ".join(t.capitalize() for t in targets)
+        suffix = f" with message: `{message}`" if message else ""
         await interaction.response.send_message(
-            f"✅ This channel will receive **{names}** alerts 15 min before spawn.",
+            f"✅ This channel will receive **{names}** alerts 15 min before spawn{suffix}.",
             ephemeral=True,
         )
 
@@ -103,8 +121,13 @@ class SubscribeCog(commands.Cog):
     async def subscriptions(self, interaction: discord.Interaction) -> None:
         subs = list_subscriptions(interaction.channel_id)
         if subs:
-            names = ", ".join(s.capitalize() for s in sorted(subs))
-            await interaction.response.send_message(f"Active alerts: **{names}**", ephemeral=True)
+            lines = []
+            for event, msg in sorted(subs):
+                line = event.capitalize()
+                if msg:
+                    line += f" — `{msg}`"
+                lines.append(line)
+            await interaction.response.send_message("\n".join(lines), ephemeral=True)
         else:
             await interaction.response.send_message("No active alerts in this channel.", ephemeral=True)
 

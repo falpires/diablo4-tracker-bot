@@ -8,7 +8,7 @@ from discord.ext import commands, tasks
 
 from api.diablo4life import fetch_events
 from api.firebase import fetch_helltide_a, fetch_world_boss_firebase
-from commands.subscribe import get_channels, get_last_message, set_last_message
+from commands.subscribe import get_channel_entries, get_last_message, set_last_message
 from commands.worldboss import _parse_world_boss, _full_boss_name
 from maps.zones import ZONE_ID_TO_NAME
 from utils.formatters import dt, dt_time, HELLTIDE_DURATION_MS
@@ -130,8 +130,7 @@ class NotifierCog(commands.Cog):
         await self._broadcast("legion", embed)
 
     async def _broadcast(self, event_type: str, embed: discord.Embed) -> None:
-        channel_ids = get_channels(event_type)
-        for channel_id in channel_ids:
+        for channel_id, custom_message in get_channel_entries(event_type):
             channel = self.bot.get_channel(channel_id)
             if not channel or not isinstance(channel, discord.TextChannel):
                 continue
@@ -144,7 +143,7 @@ class NotifierCog(commands.Cog):
                 except (discord.NotFound, discord.Forbidden):
                     pass
             try:
-                msg = await channel.send(embed=embed)
+                msg = await channel.send(content=custom_message, embed=embed)
                 set_last_message(event_type, channel_id, msg.id)
             except discord.Forbidden:
                 log.warning("No permission to send to channel %d", channel_id)
