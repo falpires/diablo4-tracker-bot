@@ -1,5 +1,8 @@
 import time
+from datetime import datetime
 import discord
+
+from constants import HELLTIDE_DURATION_MS, BOSS_WINDOW_MS
 
 
 def _ms_diff(ts_ms: int) -> int:
@@ -39,7 +42,13 @@ def is_active(ts_ms: int, duration_ms: int) -> bool:
     return ts_ms <= now_ms <= ts_ms + duration_ms
 
 
-HELLTIDE_DURATION_MS = 55 * 60 * 1000
+def parse_api_timestamp(v) -> int:
+    """Convert ISO 8601 string or integer seconds to milliseconds since epoch. Returns 0 if falsy."""
+    if not v:
+        return 0
+    if isinstance(v, str):
+        return int(datetime.fromisoformat(v.replace("Z", "+00:00")).timestamp() * 1000)
+    return int(v) * 1000
 
 
 def helltide_embed(data: dict, zone: str | None) -> discord.Embed:
@@ -73,11 +82,11 @@ def worldboss_embed(
     pairs: list[tuple[str, str]], spawn_ms: int, next_spawn_ms: int,
 ) -> discord.Embed:
     """pairs: list of (zone_name, boss_full_name)."""
-    active = is_active(spawn_ms, 15 * 60 * 1000)
+    active = is_active(spawn_ms, BOSS_WINDOW_MS)
     spawns_str = "\n".join(f"**{boss}** — {zone}" for zone, boss in pairs) if pairs else "Unknown"
 
     if active:
-        end_ms = spawn_ms + 15 * 60 * 1000
+        end_ms = spawn_ms + BOSS_WINDOW_MS
         desc = f"**Alive** — despawns {dt(end_ms)} ({dt_time(end_ms)})\n{spawns_str}"
         embed = discord.Embed(title="👹 World Boss", description=desc, color=discord.Color.from_rgb(160, 0, 160))
         embed.add_field(name="Next spawn", value=f"{dt(next_spawn_ms)} ({dt_time(next_spawn_ms)})", inline=False)

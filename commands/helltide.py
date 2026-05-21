@@ -1,6 +1,5 @@
 import asyncio
 import time
-from datetime import datetime, timezone
 
 import discord
 from discord import app_commands
@@ -8,9 +7,10 @@ from discord.ext import commands
 
 from api.diablo4life import fetch_events
 from api.firebase import fetch_helltide_a
+from constants import HELLTIDE_DURATION_MS
 from maps.generator import generate_helltide_map
 from maps.zones import ZONE_ID_TO_NAME
-from utils.formatters import is_active, HELLTIDE_DURATION_MS, dt, dt_time
+from utils.formatters import is_active, parse_api_timestamp, dt, dt_time
 
 EXPANSION_ZONES = {"Nahantu", "Skovos"}
 
@@ -18,19 +18,11 @@ EXPANSION_ZONES = {"Nahantu", "Skovos"}
 def _parse_firebase(fb: dict) -> tuple[int, int, str | None]:
     """Return (start_ms, end_ms, zone_display_name) from Firebase helltide payload."""
     zone_raw = fb.get("zone")
-    # Normalize Firebase zone ID (e.g. "fractured_peaks") to display name ("Fractured Peaks")
     zone = ZONE_ID_TO_NAME.get(zone_raw, zone_raw.title() if zone_raw else None)
-
     start_raw = fb.get("startTime") or fb.get("id")
     end_raw = fb.get("endTime")
-    if isinstance(start_raw, str):
-        start_ms = int(datetime.fromisoformat(start_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        start_ms = int(start_raw) * 1000 if start_raw else 0
-    if isinstance(end_raw, str):
-        end_ms = int(datetime.fromisoformat(end_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        end_ms = start_ms + HELLTIDE_DURATION_MS
+    start_ms = parse_api_timestamp(start_raw)
+    end_ms = parse_api_timestamp(end_raw) if end_raw else start_ms + HELLTIDE_DURATION_MS
     return start_ms, end_ms, zone
 
 
@@ -39,6 +31,7 @@ class HelltideCog(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="helltide", description="Current Helltide status and zone map")
+    @app_commands.checks.cooldown(1, 10.0, key=lambda i: (i.guild_id, i.user.id))
     async def helltide(self, interaction: discord.Interaction) -> None:
         await interaction.response.defer()
 
@@ -51,6 +44,10 @@ class HelltideCog(commands.Cog):
             fb = None
         if isinstance(data, Exception):
             data = {}
+
+        if fb is None and not data:
+            await interaction.followup.send("⚠️ Unable to fetch Helltide data. Try again shortly.", ephemeral=True)
+            return
 
         now_ms = int(time.time() * 1000)
         chest_ms = data.get("chestRespawn", 0) if isinstance(data, dict) else 0
@@ -92,14 +89,19 @@ class HelltideCog(commands.Cog):
 
         embed.set_footer(text="helltides.com")
 
-        map_zone = zone
-        map_buf = generate_helltide_map(map_zone)
+        map_buf = generate_helltide_map(zone)
         if map_buf:
             file = discord.File(map_buf, filename="helltide_map.png")
             embed.set_image(url="attachment://helltide_map.png")
             await interaction.followup.send(embed=embed, file=file)
         else:
             await interaction.followup.send(embed=embed)
+
+    async def cog_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError) -> None:
+        if isinstance(error, app_commands.CommandOnCooldown):
+            await interaction.response.send_message(
+                f"Slow down! Try again in {error.retry_after:.0f}s.", ephemeral=True
+            )
 
 
 async def setup(bot: commands.Bot) -> None:

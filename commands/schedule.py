@@ -1,6 +1,5 @@
 import asyncio
 import time
-from datetime import datetime
 
 import discord
 from discord import app_commands
@@ -8,8 +7,9 @@ from discord.ext import commands
 
 from api.diablo4life import fetch_events
 from api.firebase import fetch_helltide_a, fetch_world_boss_firebase
+from constants import HELLTIDE_DURATION_MS
 from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX
-from utils.formatters import dt, dt_time, is_active, HELLTIDE_DURATION_MS
+from utils.formatters import dt, dt_time, is_active, parse_api_timestamp
 
 LEGION_INTERVAL_MS = 25 * 60 * 1000
 EXPANSION_ZONES = {"Nahantu", "Skovos"}
@@ -19,14 +19,8 @@ def _parse_firebase(fb: dict) -> tuple[int, int, str | None]:
     zone = fb.get("zone")
     start_raw = fb.get("startTime") or fb.get("id")
     end_raw = fb.get("endTime")
-    if isinstance(start_raw, str):
-        start_ms = int(datetime.fromisoformat(start_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        start_ms = int(start_raw) * 1000 if start_raw else 0
-    if isinstance(end_raw, str):
-        end_ms = int(datetime.fromisoformat(end_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        end_ms = start_ms + HELLTIDE_DURATION_MS
+    start_ms = parse_api_timestamp(start_raw)
+    end_ms = parse_api_timestamp(end_raw) if end_raw else start_ms + HELLTIDE_DURATION_MS
     return start_ms, end_ms, zone
 
 
@@ -53,6 +47,7 @@ class ScheduleCog(commands.Cog):
         app_commands.Choice(name="World Boss", value="worldboss"),
         app_commands.Choice(name="Legion", value="legion"),
     ])
+    @app_commands.checks.cooldown(1, 10.0, key=lambda i: (i.guild_id, i.user.id))
     async def schedule(self, interaction: discord.Interaction, event: str = "all") -> None:
         await interaction.response.defer()
 
@@ -68,6 +63,10 @@ class ScheduleCog(commands.Cog):
             fb_boss = None
         if isinstance(data, Exception):
             data = {}
+
+        if fb is None and fb_boss is None and not data:
+            await interaction.followup.send("⚠️ Unable to fetch schedule data. Try again shortly.", ephemeral=True)
+            return
 
         now_ms = int(time.time() * 1000)
         embed = discord.Embed(title="📅 Event Schedule", color=discord.Color.from_rgb(60, 30, 80))
@@ -110,8 +109,9 @@ class ScheduleCog(commands.Cog):
                 from commands.worldboss import _parse_world_boss
                 d4_wb = data.get("worldBoss", {}) if isinstance(data, dict) else {}
                 pairs, spawn_ms, next_spawn_ms = _parse_world_boss(fb_boss, d4_wb)
+                from constants import BOSS_WINDOW_MS
                 spawns_str = " / ".join(f"{boss} ({zone})" for zone, boss in pairs) if pairs else "Unknown"
-                if is_active(spawn_ms, 15 * 60 * 1000):
+                if is_active(spawn_ms, BOSS_WINDOW_MS):
                     val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {spawns_str}"
                 else:
                     val = f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {spawns_str}"
@@ -131,6 +131,12 @@ class ScheduleCog(commands.Cog):
 
         embed.set_footer(text="helltides.com + diablo4.life")
         await interaction.followup.send(embed=embed)
+
+    async def cog_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError) -> None:
+        if isinstance(error, app_commands.CommandOnCooldown):
+            await interaction.response.send_message(
+                f"Slow down! Try again in {error.retry_after:.0f}s.", ephemeral=True
+            )
 
 
 async def setup(bot: commands.Bot) -> None:

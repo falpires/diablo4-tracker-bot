@@ -1,6 +1,4 @@
 import asyncio
-import time
-from datetime import datetime
 
 import discord
 from discord import app_commands
@@ -8,10 +6,9 @@ from discord.ext import commands
 
 from api.diablo4life import fetch_events
 from api.firebase import fetch_world_boss_firebase
+from constants import BOSS_WINDOW_MS
 from maps.generator import generate_boss_map
-from utils.formatters import worldboss_embed, is_active
-
-BOSS_WINDOW_MS = 15 * 60 * 1000
+from utils.formatters import worldboss_embed, parse_api_timestamp
 
 
 def _parse_world_boss(fb: dict, d4life: dict) -> tuple[list[tuple[str, str]], int, int]:
@@ -20,16 +17,8 @@ def _parse_world_boss(fb: dict, d4life: dict) -> tuple[list[tuple[str, str]], in
     """
     start_raw = fb.get("startTime") or fb.get("id")
     next_raw = fb.get("nextTime")
-
-    if isinstance(start_raw, str):
-        spawn_ms = int(datetime.fromisoformat(start_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        spawn_ms = int(start_raw) * 1000 if start_raw else 0
-
-    if isinstance(next_raw, str):
-        next_spawn_ms = int(datetime.fromisoformat(next_raw.replace("Z", "+00:00")).timestamp() * 1000)
-    else:
-        next_spawn_ms = spawn_ms + 12600 * 1000
+    spawn_ms = parse_api_timestamp(start_raw)
+    next_spawn_ms = parse_api_timestamp(next_raw) if next_raw else spawn_ms + 12600 * 1000
 
     fb_zones = fb.get("zone", [])
     if fb_zones:
@@ -61,6 +50,7 @@ class WorldBossCog(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="worldboss", description="Current World Boss status and spawn map")
+    @app_commands.checks.cooldown(1, 10.0, key=lambda i: (i.guild_id, i.user.id))
     async def worldboss(self, interaction: discord.Interaction) -> None:
         await interaction.response.defer()
 
@@ -73,6 +63,10 @@ class WorldBossCog(commands.Cog):
             fb = {}
         if isinstance(data, Exception):
             data = {}
+
+        if not fb and not data:
+            await interaction.followup.send("⚠️ Unable to fetch World Boss data. Try again shortly.", ephemeral=True)
+            return
 
         d4_wb = data.get("worldBoss", {}) if isinstance(data, dict) else {}
         pairs, spawn_ms, next_spawn_ms = _parse_world_boss(fb, d4_wb)
@@ -87,6 +81,12 @@ class WorldBossCog(commands.Cog):
             await interaction.followup.send(embed=embed, file=file)
         else:
             await interaction.followup.send(embed=embed)
+
+    async def cog_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError) -> None:
+        if isinstance(error, app_commands.CommandOnCooldown):
+            await interaction.response.send_message(
+                f"Slow down! Try again in {error.retry_after:.0f}s.", ephemeral=True
+            )
 
 
 async def setup(bot: commands.Bot) -> None:

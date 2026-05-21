@@ -17,7 +17,7 @@ ZONE_ID_TO_NAME: dict[str, str] = {v: k for k, v in ZONE_NAME_TO_ID.items()}
 
 # Helltide zone rotation (Season 8 / 2026 — verify anchor if wrong)
 # 60-minute cycle, 55 min active, 5 min downtime
-HELLTIDE_CYCLE_MS = 60 * 60 * 1000
+from constants import HELLTIDE_CYCLE_MS
 
 # Known anchor: the spawn at HELLTIDE_ANCHOR_MS was HELLTIDE_ROTATION[HELLTIDE_ANCHOR_INDEX]
 # Anchor index 6 = Skovos confirmed: cycle 1 from anchor gives FP (idx 0), user confirmed FP active.

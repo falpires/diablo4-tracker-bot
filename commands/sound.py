@@ -3,7 +3,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-SOUND_ID = 1453003890654969926
+from config import SOUND_ID
 
 
 class SoundCog(commands.Cog):
@@ -12,6 +12,9 @@ class SoundCog(commands.Cog):
 
     @app_commands.command(name="julian", description="Play a soundboard effect in your voice channel")
     async def sound(self, interaction: discord.Interaction) -> None:
+        if not SOUND_ID:
+            await interaction.response.send_message("Soundboard not configured.", ephemeral=True)
+            return
         if not interaction.user.voice or not interaction.user.voice.channel:
             await interaction.response.send_message(
                 "You need to be in a voice channel.", ephemeral=True

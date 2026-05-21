@@ -2,7 +2,7 @@
 import asyncio
 import json
 import time
-from api.d4armory import fetch_events
+from api.diablo4life import fetch_events
 
 
 def fmt_countdown(ts_ms: int) -> str:
@@ -40,13 +40,6 @@ async def main():
         ts_ms = boss.get("time", 0)
         print("=== WORLD BOSS ===")
         print(f"  Name:      {boss.get('name', 'N/A')}")
-        print(f"  Spawn:     {fmt_countdown(ts_ms)}")
-        print()
-
-    if next_boss := data.get("nextWorldBoss"):
-        ts_ms = next_boss.get("time", 0)
-        print("=== NEXT WORLD BOSS ===")
-        print(f"  Name:      {next_boss.get('name', 'N/A')}")
         print(f"  Spawn:     {fmt_countdown(ts_ms)}")
         print()
 
