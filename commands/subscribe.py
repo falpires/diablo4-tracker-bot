@@ -97,7 +97,7 @@ class SubscribeCog(commands.Cog):
         for t in targets:
             add_subscription(interaction.channel_id, t, message)
         names = ", ".join(t.capitalize() for t in targets)
-        suffix = f" with message: `{message}`" if message else ""
+        suffix = f" with message: {message}" if message else ""
         await interaction.response.send_message(
             f"✅ This channel will receive **{names}** alerts 15 min before spawn{suffix}.",
             ephemeral=True,
@@ -125,7 +125,7 @@ class SubscribeCog(commands.Cog):
             for event, msg in sorted(subs):
                 line = event.capitalize()
                 if msg:
-                    line += f" — `{msg}`"
+                    line += f" — {msg}"
                 lines.append(line)
             await interaction.response.send_message("\n".join(lines), ephemeral=True)
         else:
