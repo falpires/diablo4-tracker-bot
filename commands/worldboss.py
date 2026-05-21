@@ -4,14 +4,11 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from pathlib import Path
-
 from api.diablo4life import fetch_events
 from api.firebase import fetch_world_boss_firebase
 from constants import BOSS_WINDOW_MS
+from maps.generator import generate_boss_map
 from utils.formatters import worldboss_embed, parse_api_timestamp
-
-_BOSS_ICON = Path(__file__).parent.parent / "maps" / "assets" / "World-Boss.png"
 
 
 def _parse_world_boss(fb: dict, d4life: dict) -> tuple[list[tuple[str, str]], int, int]:
@@ -79,9 +76,11 @@ class WorldBossCog(commands.Cog):
 
         embed = worldboss_embed(pairs, spawn_ms, next_spawn_ms)
 
-        if _BOSS_ICON.exists():
-            file = discord.File(str(_BOSS_ICON), filename="boss.png")
-            embed.set_thumbnail(url="attachment://boss.png")
+        map_zone = pairs[0][0] if pairs else None
+        map_buf = generate_boss_map(map_zone)
+        if map_buf:
+            file = discord.File(map_buf, filename="boss_map.png")
+            embed.set_image(url="attachment://boss_map.png")
             await interaction.followup.send(embed=embed, file=file)
         else:
             await interaction.followup.send(embed=embed)

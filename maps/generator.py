@@ -1,11 +1,12 @@
 """
 Generates Diablo 4 zone maps for Discord embeds using real zone images from helltides.com.
 Helltide: returns the zone map image (already has red helltide shading).
+Boss: returns the same image desaturated — removes helltide coloring, keeps geography.
 """
 import io
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 
 from maps.zones import ZONE_NAME_TO_ID
 
@@ -33,14 +34,27 @@ def _to_buf(img: Image.Image) -> io.BytesIO:
     return buf
 
 
-def generate_helltide_map(zone_name: str | None) -> io.BytesIO | None:
-    """Return the zone map image. Already has red helltide shading from helltides.com."""
+def _zone_image(zone_name: str | None) -> Image.Image | None:
     if not zone_name:
         return None
     zone_id = ZONE_NAME_TO_ID.get(zone_name)
     if not zone_id:
         return None
-    img = _load_zone_image(zone_id)
+    return _load_zone_image(zone_id)
+
+
+def generate_helltide_map(zone_name: str | None) -> io.BytesIO | None:
+    """Return the zone map image with helltide shading from helltides.com."""
+    img = _zone_image(zone_name)
     if img is None:
         return None
     return _to_buf(_resize(img))
+
+
+def generate_boss_map(zone_name: str | None) -> io.BytesIO | None:
+    """Return the zone map desaturated — strips helltide red shading."""
+    img = _zone_image(zone_name)
+    if img is None:
+        return None
+    img = ImageEnhance.Color(_resize(img)).enhance(0.0)
+    return _to_buf(img)
