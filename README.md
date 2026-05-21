@@ -2,6 +2,8 @@
 
 Discord bot for tracking Diablo 4 live events — Helltide, World Boss, and Legion. Slash commands with zone maps and optional channel alerts.
 
+> **Personal use only.** This bot is built for a private Discord server and is not intended for public use or distribution.
+
 ## Commands
 
 | Command | Description |
