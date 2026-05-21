@@ -25,8 +25,8 @@ Discord bot for tracking Diablo 4 live events — Helltide, World Boss, and Legi
 
 ## Data Sources
 
-- **helltides.com Firebase** — real-time Helltide zone and World Boss zone/name (community-reported)
-- **diablo4.life** — Helltide and Legion timing, World Boss name cross-reference, chest respawn
+- **diablo4.life** — Helltide and Legion timing, World Boss name, chest respawn
+- **helltides.com** — real-time Helltide zone and World Boss zone data (community-reported)
 
 ## Setup
 
