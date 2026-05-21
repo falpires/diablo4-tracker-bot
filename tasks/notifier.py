@@ -10,6 +10,7 @@ from api.firebase import fetch_world_boss_firebase
 from commands.subscribe import get_channel_entries, get_last_message, set_last_message
 from commands.worldboss import _parse_world_boss
 from constants import ALERT_WINDOW_MS, ALERT_TOLERANCE_MS
+from maps.generator import generate_helltide_map, generate_boss_map
 from maps.zones import ZONE_ID_TO_NAME
 from utils.formatters import dt, dt_time
 
@@ -61,11 +62,16 @@ class NotifierCog(commands.Cog):
         self._notified = {k for k in self._notified if k[1] > cutoff}
 
     async def _check_helltide(self, data, now_ms: int) -> None:
-        # Use diablo4.life next-spawn time — Firebase startTime only updates after spawn starts
         if isinstance(data, Exception) or not data:
             return
         spawn_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
-        if not spawn_ms or not _in_alert_window(spawn_ms, now_ms):
+        if not spawn_ms:
+            return
+        # API briefly returns current start (past) right after spawn; advance to next
+        if spawn_ms < now_ms:
+            from constants import HELLTIDE_CYCLE_MS
+            spawn_ms += HELLTIDE_CYCLE_MS
+        if not _in_alert_window(spawn_ms, now_ms):
             return
         key = ("helltide", spawn_ms)
         if key in self._notified:
@@ -79,7 +85,10 @@ class NotifierCog(commands.Cog):
             description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n**Zone:** {zone}",
             color=discord.Color.from_rgb(180, 30, 30),
         )
-        await self._broadcast("helltide", embed)
+        map_buf = generate_helltide_map(zone)
+        if map_buf:
+            embed.set_image(url="attachment://helltide_map.png")
+        await self._broadcast("helltide", embed, map_buf, "helltide_map.png")
 
     async def _check_worldboss(self, fb, data, now_ms: int) -> None:
         if isinstance(fb, Exception) or not fb:
@@ -101,7 +110,11 @@ class NotifierCog(commands.Cog):
             description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n{spawns_str}",
             color=discord.Color.from_rgb(160, 0, 160),
         )
-        await self._broadcast("worldboss", embed)
+        map_zone = pairs[0][0] if pairs else None
+        map_buf = generate_boss_map(map_zone)
+        if map_buf:
+            embed.set_image(url="attachment://boss_map.png")
+        await self._broadcast("worldboss", embed, map_buf, "boss_map.png")
 
     async def _check_legion(self, data, now_ms: int) -> None:
         if isinstance(data, Exception) or not data:
@@ -122,7 +135,7 @@ class NotifierCog(commands.Cog):
         )
         await self._broadcast("legion", embed)
 
-    async def _broadcast(self, event_type: str, embed: discord.Embed) -> None:
+    async def _broadcast(self, event_type: str, embed: discord.Embed, map_buf=None, map_filename: str | None = None) -> None:
         for channel_id, custom_message in get_channel_entries(event_type):
             channel = self.bot.get_channel(channel_id)
             if not channel or not isinstance(channel, discord.TextChannel):
@@ -136,7 +149,12 @@ class NotifierCog(commands.Cog):
                 except (discord.NotFound, discord.Forbidden):
                     pass
             try:
-                msg = await channel.send(content=custom_message, embed=embed)
+                if map_buf and map_filename:
+                    map_buf.seek(0)
+                    file = discord.File(map_buf, filename=map_filename)
+                    msg = await channel.send(content=custom_message, embed=embed, file=file)
+                else:
+                    msg = await channel.send(content=custom_message, embed=embed)
                 set_last_message(event_type, channel_id, msg.id)
             except discord.Forbidden:
                 log.warning("No permission to send to channel %d", channel_id)
