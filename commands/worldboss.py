@@ -21,12 +21,15 @@ def _parse_world_boss(fb: dict, d4life: dict) -> tuple[list[tuple[str, str]], in
     next_spawn_ms = parse_api_timestamp(next_raw) if next_raw else spawn_ms + 12600 * 1000
 
     fb_zones = fb.get("zone", [])
+    main_boss = fb.get("boss", "")
     if fb_zones:
-        # Firebase zone list has per-zone boss info
+        # Filter to zones matching the top-level boss — Firebase now reports concurrent bosses
         pairs = [
             (z["name"], _full_boss_name(z.get("boss", "")))
-            for z in fb_zones if z.get("name")
+            for z in fb_zones if z.get("name") and z.get("boss") == main_boss
         ]
+        if not pairs:
+            pairs = [(z["name"], _full_boss_name(z.get("boss", ""))) for z in fb_zones if z.get("name")]
     else:
         # Fallback: single entry from d4life name or Firebase top-level boss
         d4_name = d4life.get("name", "")
