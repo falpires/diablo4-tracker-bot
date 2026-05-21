@@ -14,6 +14,8 @@ COGS = [
     "commands.legion",
     "commands.schedule",
     "commands.sound",
+    "commands.subscribe",
+    "tasks.notifier",
 ]
 
 
