@@ -70,22 +70,19 @@ def helltide_embed(data: dict, zone: str | None) -> discord.Embed:
 
 
 def worldboss_embed(
-    name: str, spawn_ms: int, zones: list[str], next_spawn_ms: int,
+    pairs: list[tuple[str, str]], spawn_ms: int, next_spawn_ms: int,
 ) -> discord.Embed:
+    """pairs: list of (zone_name, boss_full_name)."""
     active = is_active(spawn_ms, 15 * 60 * 1000)
-    zone_str = " / ".join(zones) if zones else ""
+    spawns_str = "\n".join(f"**{boss}** — {zone}" for zone, boss in pairs) if pairs else "Unknown"
 
     if active:
         end_ms = spawn_ms + 15 * 60 * 1000
-        desc = f"**{name}** is **alive** — despawns {dt(end_ms)} ({dt_time(end_ms)})"
-        if zone_str:
-            desc += f"\n{zone_str}"
+        desc = f"**Alive** — despawns {dt(end_ms)} ({dt_time(end_ms)})\n{spawns_str}"
         embed = discord.Embed(title="👹 World Boss", description=desc, color=discord.Color.from_rgb(160, 0, 160))
         embed.add_field(name="Next spawn", value=f"{dt(next_spawn_ms)} ({dt_time(next_spawn_ms)})", inline=False)
     else:
-        desc = f"**{name}** spawns {dt(spawn_ms)} ({dt_time(spawn_ms)})"
-        if zone_str:
-            desc += f"\n{zone_str}"
+        desc = f"Spawns {dt(spawn_ms)} ({dt_time(spawn_ms)})\n{spawns_str}"
         embed = discord.Embed(title="👹 World Boss", description=desc, color=discord.Color.from_rgb(80, 80, 80))
 
     embed.set_footer(text="helltides.com")

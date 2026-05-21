@@ -109,12 +109,12 @@ class ScheduleCog(commands.Cog):
             if fb_boss and isinstance(fb_boss, dict):
                 from commands.worldboss import _parse_world_boss
                 d4_wb = data.get("worldBoss", {}) if isinstance(data, dict) else {}
-                boss, zones, spawn_ms, next_spawn_ms = _parse_world_boss(fb_boss, d4_wb)
-                zone_str = f" ({' / '.join(zones)})" if zones else ""
+                pairs, spawn_ms, next_spawn_ms = _parse_world_boss(fb_boss, d4_wb)
+                spawns_str = " / ".join(f"{boss} ({zone})" for zone, boss in pairs) if pairs else "Unknown"
                 if is_active(spawn_ms, 15 * 60 * 1000):
-                    val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}{zone_str}"
+                    val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {spawns_str}"
                 else:
-                    val = f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {boss}{zone_str}"
+                    val = f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {spawns_str}"
             else:
                 val = "No data"
             embed.add_field(name="👹 World Boss", value=val, inline=False)

@@ -14,8 +14,10 @@ from utils.formatters import worldboss_embed, is_active
 BOSS_WINDOW_MS = 15 * 60 * 1000
 
 
-def _parse_world_boss(fb: dict, d4life: dict) -> tuple[str, list[str], int, int]:
-    """Return (name, zones, spawn_ms, next_spawn_ms)."""
+def _parse_world_boss(fb: dict, d4life: dict) -> tuple[list[tuple[str, str]], int, int]:
+    """Return (zone_boss_pairs, spawn_ms, next_spawn_ms).
+    zone_boss_pairs: list of (zone_name, boss_full_name) — one entry per spawning boss.
+    """
     start_raw = fb.get("startTime") or fb.get("id")
     next_raw = fb.get("nextTime")
 
@@ -29,18 +31,21 @@ def _parse_world_boss(fb: dict, d4life: dict) -> tuple[str, list[str], int, int]
     else:
         next_spawn_ms = spawn_ms + 12600 * 1000
 
-    zones = [z["name"] for z in fb.get("zone", []) if z.get("name")]
-
-    # Use d4life name if its timestamp matches Firebase slot (more accurate name)
-    d4_name = d4life.get("name", "")
-    d4_time = d4life.get("time", 0)
-    if d4_name and d4_time and d4_time == spawn_ms:
-        name = d4_name
+    fb_zones = fb.get("zone", [])
+    if fb_zones:
+        # Firebase zone list has per-zone boss info
+        pairs = [
+            (z["name"], _full_boss_name(z.get("boss", "")))
+            for z in fb_zones if z.get("name")
+        ]
     else:
-        boss_raw = fb.get("boss", "Unknown")
-        name = _full_boss_name(boss_raw)
+        # Fallback: single entry from d4life name or Firebase top-level boss
+        d4_name = d4life.get("name", "")
+        d4_time = d4life.get("time", 0)
+        boss_name = d4_name if (d4_name and d4_time == spawn_ms) else _full_boss_name(fb.get("boss", "Unknown"))
+        pairs = [("Unknown", boss_name)]
 
-    return name, zones, spawn_ms, next_spawn_ms
+    return pairs, spawn_ms, next_spawn_ms
 
 
 def _full_boss_name(short: str) -> str:
@@ -70,14 +75,11 @@ class WorldBossCog(commands.Cog):
             data = {}
 
         d4_wb = data.get("worldBoss", {}) if isinstance(data, dict) else {}
-        name, zones, spawn_ms, next_spawn_ms = _parse_world_boss(fb, d4_wb)
+        pairs, spawn_ms, next_spawn_ms = _parse_world_boss(fb, d4_wb)
 
-        embed = worldboss_embed(name, spawn_ms, zones, next_spawn_ms)
+        embed = worldboss_embed(pairs, spawn_ms, next_spawn_ms)
 
-        map_zone = zones[0] if zones else None
-        if not is_active(spawn_ms, BOSS_WINDOW_MS):
-            map_zone = zones[0] if zones else None
-
+        map_zone = pairs[0][0] if pairs else None
         map_buf = generate_boss_map(map_zone)
         if map_buf:
             file = discord.File(map_buf, filename="boss_map.png")
