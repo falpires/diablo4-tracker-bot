@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-# Zone name (API string) → zone ID (file/data key)
+# Zone name (display string) → zone ID (file/data key)
 ZONE_NAME_TO_ID: dict[str, str] = {
     "Fractured Peaks": "fractured_peaks",
     "Scosglen": "scosglen",
@@ -11,6 +11,9 @@ ZONE_NAME_TO_ID: dict[str, str] = {
     "Nahantu": "nahantu",
     "Skovos": "skovos",
 }
+
+# zone ID (Firebase/file key) → display name
+ZONE_ID_TO_NAME: dict[str, str] = {v: k for k, v in ZONE_NAME_TO_ID.items()}
 
 # Helltide zone rotation (Season 8 / 2026 — verify anchor if wrong)
 # 60-minute cycle, 55 min active, 5 min downtime

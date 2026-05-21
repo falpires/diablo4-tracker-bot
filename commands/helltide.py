@@ -9,14 +9,18 @@ from discord.ext import commands
 from api.diablo4life import fetch_events
 from api.firebase import fetch_helltide_a
 from maps.generator import generate_helltide_map
+from maps.zones import ZONE_ID_TO_NAME
 from utils.formatters import is_active, HELLTIDE_DURATION_MS, dt, dt_time
 
 EXPANSION_ZONES = {"Nahantu", "Skovos"}
 
 
 def _parse_firebase(fb: dict) -> tuple[int, int, str | None]:
-    """Return (start_ms, end_ms, zone) from Firebase helltide payload."""
-    zone = fb.get("zone")
+    """Return (start_ms, end_ms, zone_display_name) from Firebase helltide payload."""
+    zone_raw = fb.get("zone")
+    # Normalize Firebase zone ID (e.g. "fractured_peaks") to display name ("Fractured Peaks")
+    zone = ZONE_ID_TO_NAME.get(zone_raw, zone_raw.title() if zone_raw else None)
+
     start_raw = fb.get("startTime") or fb.get("id")
     end_raw = fb.get("endTime")
     if isinstance(start_raw, str):
@@ -74,7 +78,7 @@ class HelltideCog(commands.Cog):
 
         embed = discord.Embed(title="🔥 Helltide", description=desc, color=color)
         if zone:
-            embed.add_field(name="Zone", value=zone.title(), inline=True)
+            embed.add_field(name="Zone", value=zone, inline=True)
         if chest_ms:
             embed.add_field(name="Chest Respawn", value=f"{dt(chest_ms)} ({dt_time(chest_ms)})", inline=True)
 
@@ -88,7 +92,7 @@ class HelltideCog(commands.Cog):
 
         embed.set_footer(text="helltides.com")
 
-        map_zone = zone.title() if zone else None
+        map_zone = zone
         map_buf = generate_helltide_map(map_zone)
         if map_buf:
             file = discord.File(map_buf, filename="helltide_map.png")
