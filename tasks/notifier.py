@@ -83,7 +83,7 @@ class NotifierCog(commands.Cog):
         zone = ZONE_ID_TO_NAME.get(zone_raw, zone_raw.title() if zone_raw else "Unknown")
         embed = discord.Embed(
             title="🔥 Helltide Alert",
-            description=f"Spawning in **~15 min** — {dt(spawn_ms)} ({dt_time(spawn_ms)})\n**Zone:** {zone}",
+            description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n**Zone:** {zone}",
             color=discord.Color.from_rgb(180, 30, 30),
         )
         await self._broadcast("helltide", embed)
@@ -105,7 +105,7 @@ class NotifierCog(commands.Cog):
         spawns_str = "\n".join(f"**{boss}** — {zone}" for zone, boss in pairs) if pairs else "Unknown"
         embed = discord.Embed(
             title="👹 World Boss Alert",
-            description=f"Spawning in **~15 min** — {dt(spawn_ms)} ({dt_time(spawn_ms)})\n{spawns_str}",
+            description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n{spawns_str}",
             color=discord.Color.from_rgb(160, 0, 160),
         )
         await self._broadcast("worldboss", embed)
@@ -124,7 +124,7 @@ class NotifierCog(commands.Cog):
 
         embed = discord.Embed(
             title="⚔️ Legion Alert",
-            description=f"Spawning in **~15 min** — {dt(spawn_ms)} ({dt_time(spawn_ms)})",
+            description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})",
             color=discord.Color.from_rgb(30, 100, 200),
         )
         await self._broadcast("legion", embed)
