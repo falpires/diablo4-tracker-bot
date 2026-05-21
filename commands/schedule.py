@@ -7,8 +7,8 @@ from discord import app_commands
 from discord.ext import commands
 
 from api.diablo4life import fetch_events
-from api.firebase import fetch_helltide_a
-from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX, get_boss_spawn
+from api.firebase import fetch_helltide_a, fetch_world_boss_firebase
+from maps.zones import HELLTIDE_CYCLE_MS, HELLTIDE_ROTATION, HELLTIDE_ANCHOR_MS, HELLTIDE_ANCHOR_INDEX
 from utils.formatters import dt, dt_time, is_active, HELLTIDE_DURATION_MS
 
 LEGION_INTERVAL_MS = 25 * 60 * 1000
@@ -56,13 +56,16 @@ class ScheduleCog(commands.Cog):
     async def schedule(self, interaction: discord.Interaction, event: str = "all") -> None:
         await interaction.response.defer()
 
-        fb, data = await asyncio.gather(
+        fb, fb_boss, data = await asyncio.gather(
             fetch_helltide_a(),
+            fetch_world_boss_firebase(),
             fetch_events(),
             return_exceptions=True,
         )
         if isinstance(fb, Exception):
             fb = None
+        if isinstance(fb_boss, Exception):
+            fb_boss = None
         if isinstance(data, Exception):
             data = {}
 
@@ -103,11 +106,17 @@ class ScheduleCog(commands.Cog):
             embed.add_field(name="🔥 Helltide", value="\n".join(lines) or "No data", inline=False)
 
         if event in ("all", "worldboss"):
-            boss, zones, spawn_ms, next_boss, next_zones, next_spawn_ms = get_boss_spawn(now_ms)
-            if is_active(spawn_ms, 15 * 60 * 1000):
-                val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}"
+            if fb_boss and isinstance(fb_boss, dict):
+                from commands.worldboss import _parse_world_boss
+                d4_wb = data.get("worldBoss", {}) if isinstance(data, dict) else {}
+                boss, zones, spawn_ms, next_spawn_ms = _parse_world_boss(fb_boss, d4_wb)
+                zone_str = f" ({' / '.join(zones)})" if zones else ""
+                if is_active(spawn_ms, 15 * 60 * 1000):
+                    val = f"**🟣 ALIVE** {dt_time(spawn_ms)} — {boss}{zone_str}"
+                else:
+                    val = f"{dt(spawn_ms)} {dt_time(spawn_ms)} — {boss}{zone_str}"
             else:
-                val = f"{dt(next_spawn_ms)} {dt_time(next_spawn_ms)} — {next_boss}"
+                val = "No data"
             embed.add_field(name="👹 World Boss", value=val, inline=False)
 
         if event in ("all", "legion"):
