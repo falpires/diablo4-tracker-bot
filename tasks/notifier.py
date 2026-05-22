@@ -6,10 +6,11 @@ import discord
 from discord.ext import commands, tasks
 
 from api.diablo4life import fetch_events
-from api.firebase import fetch_world_boss_firebase
+from api.firebase import fetch_world_boss_firebase, fetch_helltide_a
+from commands.helltide import _parse_firebase
 from commands.subscribe import get_channel_entries, get_last_message, set_last_message
 from commands.worldboss import _parse_world_boss
-from constants import ALERT_WINDOW_MS, ALERT_TOLERANCE_MS
+from constants import ALERT_WINDOW_MS, ALERT_TOLERANCE_MS, HELLTIDE_DURATION_MS
 from maps.generator import generate_helltide_map, generate_boss_map
 from maps.zones import ZONE_ID_TO_NAME
 from utils.formatters import dt, dt_time
@@ -62,27 +63,29 @@ class NotifierCog(commands.Cog):
         self._notified = {k for k in self._notified if k[1] > cutoff}
 
     async def _check_helltide(self, data, now_ms: int) -> None:
-        if isinstance(data, Exception) or not data:
+        now_s = now_ms // 1000
+        # Fire once at the top of each hour when helltide goes live
+        if (now_s % 3600) // 60 != 0:
             return
-        spawn_ms = data.get("helltide", {}).get("time", 0) if isinstance(data, dict) else 0
-        if not spawn_ms:
-            return
-        # API briefly returns current start (past) right after spawn; advance to next
-        if spawn_ms < now_ms:
-            from constants import HELLTIDE_CYCLE_MS
-            spawn_ms += HELLTIDE_CYCLE_MS
-        if not _in_alert_window(spawn_ms, now_ms):
-            return
+        spawn_ms = (now_s // 3600) * 3600 * 1000
         key = ("helltide", spawn_ms)
         if key in self._notified:
             return
         self._notified.add(key)
 
-        from maps.zones import get_helltide_zone
-        zone = get_helltide_zone(spawn_ms)
+        fb = await fetch_helltide_a()
+        zone = None
+        if fb and isinstance(fb, dict):
+            _, end_ms, zone = _parse_firebase(fb)
+        else:
+            end_ms = spawn_ms + HELLTIDE_DURATION_MS
+
+        desc = f"**Active** — ends {dt(end_ms)} ({dt_time(end_ms)})"
+        if zone:
+            desc += f"\n**Zone:** {zone}"
         embed = discord.Embed(
-            title="🔥 Helltide Alert",
-            description=f"Spawning {dt(spawn_ms)} ({dt_time(spawn_ms)})\n**Zone:** {zone}",
+            title="🔥 Helltide is Live!",
+            description=desc,
             color=discord.Color.from_rgb(180, 30, 30),
         )
         map_buf = generate_helltide_map(zone)
